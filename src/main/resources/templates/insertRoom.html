@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>
+    Insert
+</p>
+<form th:action="@{/rooms/insertRoom}" method="POST">
+    <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+    <p>Name of room: <input type="text" name="name"/></p>
+    <p>Capacity of room: <input type="number" name="capacity"/></p>
+
+
+
+    <p><input type="submit" name="Submit"/></p>
+</form>
+</body>
+</html>

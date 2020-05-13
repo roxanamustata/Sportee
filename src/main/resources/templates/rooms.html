@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!--    <link rel="stylesheet" type="text/css" href="/css/users.css"/>-->
+</head>
+
+<body>
+<!--<div class="logout" style="float:right">-->
+<!--    <p th:text="#{}"> Hallo </p>-->
+<!--    <span th:text="${#httpServletRequest.remoteUser}">User</span>-->
+<!--    <form th:action="@{/logout}" method="post">-->
+<!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+<!--        <input type="submit" value="Logout"/>-->
+<!--    </form>-->
+<!--</div>-->
+
+<p>
+<li th:each="m: ${rooms}">
+
+    <span th:text="${m.name}">Name of room </span>
+    <span th:text="${m.capacity}">Capacity of room </span>
+
+
+</li>
+
+</p>
+<p>
+    <a href="/rooms/insertRoom"> Add </a> new room
+</p>
+</body>
+</html>

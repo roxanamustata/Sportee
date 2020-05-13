@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>
+    Insert
+</p>
+<form th:action="@{/users/insert}" method="POST">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+    <p>Name: <input type="text" name="userName" REQUIRED/></p>
+    <p>Password: <input type="password" name="password" REQUIRED/></p>
+    <p>First name: <input type="text" name="firstName"/></p>
+    <p>Last name: <input type="text" name="lastName"/></p>
+    <p>Birth date: <input type="date" name="birthDate"/></p>
+    <p>Height: <input type="number" name="height"/></p>
+    <p>Choose 1 (Client) or 2 (Trainer): <input type="number" name="role"/></p>
+    <p><input type="submit" name="Submit"/></p>
+</form>
+</body>
+</html>

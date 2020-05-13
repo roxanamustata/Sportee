@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>
+    Insert:
+</p>
+<form th:action="@{/gymClassTypes/insertGymClassType}" method="POST">
+    <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+    <p>Gym Class Type: <input type="text" name="name"/></p>
+    <p>Duration: <input type="number" name="duration"/> minutes</p>
+
+
+
+    <p><input type="submit" name="Submit"/></p>
+</form>
+</body>
+</html>

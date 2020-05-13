@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>
+    Insert:
+</p>
+<form th:action="@{/gymClasses/insertGymClass}" method="POST">
+    <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+    <p><span>Date and hour: <input type="date" name="date"  REQUIRED/></span>
+        <span><input type="time" name="time" min="09:00" max="20:01" REQUIRED/></span>
+    </p>
+
+    <p>Gym class: <input type="number" name="gymClassType"/></p>
+       <p>Room: <input type="number" name="room"/></p>
+
+
+    <p><input type="submit" name="Submit"/></p>
+</form>
+</body>
+</html>

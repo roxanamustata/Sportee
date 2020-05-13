@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!--    <link rel="stylesheet" type="text/css" href="/css/users.css"/>-->
+</head>
+
+<body>
+<!--<div class="logout" style="float:right">-->
+<!--    <p th:text="#{}"> Hallo </p>-->
+<!--    <span th:text="${#httpServletRequest.remoteUser}">User</span>-->
+<!--    <form th:action="@{/logout}" method="post">-->
+<!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+<!--        <input type="submit" value="Logout"/>-->
+<!--    </form>-->
+<!--</div>-->
+
+<p>
+<li th:each="m: ${subscriptions}">
+    <!--    <a th:href="@{/mvc/user/{id}/delete(id=${u.id})}">-->
+    <!--        <img class="deleteUser">-->
+    <!--    </a>-->
+    <span th:text="${m.date}">Date </span>
+    <span th:text="${m.valid}">Valid </span>
+    <span th:text="${m.subscriptionType}">Subscription type </span>
+
+    <span th:text="${m.sporteeMember}">Member </span>
+
+
+</li>
+
+<!--</p>-->
+<!--<p>-->
+<!--    <a href="/mvc/user/insert"> Add </a> new user-->
+</p>
+</body>
+</html>

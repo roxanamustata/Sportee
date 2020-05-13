@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!--    <link rel="stylesheet" type="text/css" href="/css/users.css"/>-->
+</head>
+
+<body>
+<!--<div class="logout" style="float:right">-->
+<!--    <p th:text="#{}"> Hallo </p>-->
+<!--    <span th:text="${#httpServletRequest.remoteUser}">User</span>-->
+<!--    <form th:action="@{/logout}" method="post">-->
+<!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+<!--        <input type="submit" value="Logout"/>-->
+<!--    </form>-->
+<!--</div>-->
+
+<p>
+<!--<li th:each="m: ${measurements}">-->
+<!--    &lt;!&ndash;    <a th:href="@{/mvc/user/{id}/delete(id=${u.id})}">&ndash;&gt;-->
+<!--    &lt;!&ndash;        <img class="deleteUser">&ndash;&gt;-->
+<!--    &lt;!&ndash;    </a>&ndash;&gt;-->
+<!--    <span th:text="${m.sporteeMember}">Member </span>-->
+<!--    <span th:text="${m.date}">Date </span>-->
+<!--    <span th:text="${m.measurementType}">Measurement Type </span>-->
+<!--    <span th:text="${m.value}">Value </span>-->
+<!--    <span th:text="${m.unit}">Unit </span>-->
+
+
+<!--</li>-->
+<table border="2" width="70%" cellpadding="2">
+    <tr><th>Id</th><th>Member</th><th>Date</th><th>Measurement Type</th><th>Value</th><th>Unit</th><th>Edit</th><th>Delete</th></tr>
+    <tr th:each="m: ${measurements}">
+        <td th:text="${m.id}"> </td>
+        <td th:text="${m.user}"> </td>
+        <td th:text="${m.date}"> </td>
+        <td th:text="${m.measurementType}"> </td>
+        <td th:text="${m.value}"> </td>
+        <td th:text="${m.unit}">  </td>
+        <td> <a th:href="@{/measurements/{id}/editMeasurement(id=${m.id})}">
+
+
+            Edit</a>
+
+        </td>
+        <td> <a th:href="@{/measurements/{id}/delete(id=${m.id})}">
+            Delete</a>
+
+
+        </td>
+
+
+    </tr>
+</table>
+</p>
+<p>
+    <a href="/measurements/insertMeasurement"> Add </a> new measurement
+</p>
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <!--    <link rel="stylesheet" type="text/css" href="/css/users.css"/>-->
+</head>
+
+<body>
+
+
+<p>
+<table border="2" width="70%" cellpadding="2">
+    <tr><th>Id</th><th>Name</th><th>Unit</th><th>Edit</th><th>Delete</th></tr>
+<tr th:each="m: ${measurementTypes}">
+    <td th:text="${m.id}"> </td>
+    <td th:text="${m.name}"> </td>
+    <td th:text="${m.unit}">  </td>
+    <td> <a th:href="@{/measurementTypes/{id}/editMeasurementType(id=${m.id})}">
+
+
+    Edit</a>
+
+    </td>
+    <td> <a th:href="@{/measurementTypes/{id}/delete(id=${m.id})}">
+        Delete</a>
+
+
+    </td>
+
+
+</tr>
+</table>
+</p>
+
+
+
+
+
+
+
+
+<p>
+    <a href="/measurementTypes/insertMeasurementType"> Add </a> new measurement type
+</p>
+</body>
+</html>

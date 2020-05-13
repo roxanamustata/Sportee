@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>
+    Edit
+</p>
+
+<form action="#" th:action="@{editMeasurementType(measurementType.id)}" method="POST">
+    <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+
+
+
+<!--    <p>Measurement Type: <input type="text" name="name"/></p>-->
+
+    <p>Measurement Type: <input type="text"  name="name" th:text="${param.name}"/></p>
+   <p> Unit: <input type="text" name="unit" th:text="${param.unit}" /></p>
+
+
+
+    <p><input type="submit" name="Submit"/></p>
+</form>
+</body>
+</html>

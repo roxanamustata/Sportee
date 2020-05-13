@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <!--    <link rel="stylesheet" type="text/css" href="/css/users.css"/>-->
+</head>
+
+<body>
+<!--<div class="logout" style="float:right">-->
+<!--    <p th:text="#{}"> Hallo </p>-->
+<!--    <span th:text="${#httpServletRequest.remoteUser}">User</span>-->
+<!--    <form th:action="@{/logout}" method="post">-->
+<!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+<!--        <input type="submit" value="Logout"/>-->
+<!--    </form>-->
+<!--</div>-->
+
+<p>
+<li th:each="m: ${gymClassTypes}">
+    <!--    <a th:href="@{/mvc/user/{id}/delete(id=${u.id})}">-->
+    <!--        <img class="deleteUser">-->
+    <!--    </a>-->
+    <span th:text="${m.name}">Name </span>
+    <span th:text="${m.duration}">Unit </span> minutes
+
+
+</li>
+
+</p>
+<p>
+    <a href="/gymClassTypes/insertGymClassType"> Add </a> new gym class type
+</p>
+</body>
+</html>
