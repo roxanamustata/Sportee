@@ -29,12 +29,6 @@ public class MeasurementTypeController {
         return mv;
     }
 
-    //    @GetMapping("/{id}/editMeasurementType")
-//    public ModelAndView editMeasurementType(@PathVariable Integer id) {
-//        ModelAndView mv = new ModelAndView("editMeasurementType");
-//        mv.addObject("editMeasurementType", measurementTypeService.getMeasurementType(id));
-//        return mv;
-//    }
     @GetMapping("/{id}/editMeasurementType")
     public String editMeasurementType(@PathVariable Integer id,Model model) {
         Optional<MeasurementType> measurementType = measurementTypeService.findMeasurementTypeById(id);
@@ -44,7 +38,8 @@ public class MeasurementTypeController {
     }
 
     @PostMapping("/{id}/editMeasurementType")
-    public ModelAndView editMeasurementType(@PathVariable Integer id, Optional<String> name, Optional<String> unit) {
+    public ModelAndView editMeasurementType(@PathVariable Integer id, Optional<String> name,
+                                            Optional<String> unit) {
         measurementTypeService.editMeasurementType(id, name, unit);
         return showAllMeasurementTypes();
     }

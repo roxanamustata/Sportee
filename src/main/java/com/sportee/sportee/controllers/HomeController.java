@@ -16,7 +16,7 @@ public class HomeController {
         this.gymClassService = gymClassService;
     }
 
-    @GetMapping({"/"})
+    @GetMapping({"/","/home"})
     public String home()
     {
         return "home";
@@ -40,11 +40,6 @@ public class HomeController {
         mv.addObject("timetable", gymClassService.getTimetable());
         return mv;
     }
-
-//    public String schedule()
-//    {
-//        return "timetable";
-//    }
 
     @GetMapping({"/contact"})
     public String contact()

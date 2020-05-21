@@ -20,9 +20,6 @@ public class Measurement {
     private Date date;
     private int value;
 
-    
-
-
     @ManyToOne
     @JoinColumn(name="measurement_type_id")
     private MeasurementType measurementType;

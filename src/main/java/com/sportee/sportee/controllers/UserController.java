@@ -16,21 +16,13 @@ import java.time.LocalTime;
 
 public class UserController {
     private UserService userService;
-//    private MemberService memberService;
+
 
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
-//        this.memberService = memberService;
+
     }
-
-
-//    @RequestMapping(value = "/login", method = RequestMethod.GET)
-//    public String showRegistrationForm(WebRequest request, Model model) {
-//        UserDTO userDTO = new UserDTO();
-//        model.addAttribute("user", userDTO);
-//        return "login";
-//    }
 
     @RequestMapping({"/users/showAll", "/"})
     public ModelAndView showAllUsers() {
@@ -47,37 +39,13 @@ public class UserController {
 
     @PostMapping("/users/insert")
     public ModelAndView insertUser(String userName, String password, String firstName, String lastName,
-                                  Date birthDate,
-
-
-                                   int height, int role) {
-
+                                  Date birthDate, int height, int role) {
 
         userService.insertUser(userName, password, firstName, lastName, birthDate, height, role);
-
         ModelAndView mv = new ModelAndView("membership");
         return mv;
 
-
     }
-//    @RequestMapping("/user/{id}/insertMemberDetails")
-//    public ModelAndView insertMemberDetails() {
-//        ModelAndView mv = new ModelAndView("insertMemberDetails");
-//                return mv;
-//
-//    }
-//
-//    @PostMapping("/user/{id}/insertMemberDetails")
-//    public ModelAndView insertMemberDetails( @PathVariable Integer id, String firstName, String lastName, /*@DateTimeFormat(pattern = "yyyy-MM-dd")*/
-//            Date birthDate, int height) {
-//        memberService.insertMemberDetails(firstName, lastName, birthDate, height, id);
-//        ModelAndView mv = new ModelAndView("members");
-//        return mv;
-//    }
-
-
-
-
 
 
     @RequestMapping("/users/{id}/delete")

@@ -38,7 +38,6 @@ public class GymClass {
     List<User> user;
 
 
-
     @Builder
     public GymClass(int id, LocalDateTime date, GymClassType gymClassType, Room room) {
         this.id=id;

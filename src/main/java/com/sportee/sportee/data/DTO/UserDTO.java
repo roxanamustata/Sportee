@@ -16,7 +16,6 @@ public class UserDTO {
     private String lastName;
     private Date birthDate;
     private int height;
-
     private String role;
 
 
@@ -28,7 +27,6 @@ public class UserDTO {
         this.lastName = user.getLastName();
         this.birthDate = user.getBirthDate();
         this.height = user.getHeight();
-
         this.role = user.getRole().getName();
 
     }

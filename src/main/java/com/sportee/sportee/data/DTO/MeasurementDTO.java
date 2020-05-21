@@ -8,10 +8,8 @@ import java.sql.Date;
 @Getter
 public class MeasurementDTO {
     private int id;
-
     private Date date;
     private int value;
-
     private String measurementType;
     private String unit;
     private String user;

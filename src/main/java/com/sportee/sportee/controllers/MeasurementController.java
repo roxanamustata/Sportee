@@ -47,7 +47,6 @@ public class MeasurementController {
 
     @PostMapping("/measurements/insertMeasurement")
     public ModelAndView insertMeasurement(Date date, int value, int measurementType, int user) {
-//        System.out.println(sporteeMember);
         measurementService.insertMeasurement(date, value, measurementType, user);
         return showAllMeasurements();
     }
@@ -72,7 +71,9 @@ public class MeasurementController {
     }
 
     @PostMapping("/measurements/{id}/editMeasurement")
-    public ModelAndView editMeasurement(@PathVariable Integer id, Optional<Date> date, Optional<Integer> value, Optional<MeasurementType> measurementType, Optional<User> user) {
+    public ModelAndView editMeasurement(@PathVariable Integer id, Optional<Date> date,
+                                        Optional<Integer> value, Optional<MeasurementType> measurementType,
+                                        Optional<User> user) {
         measurementService.editMeasurement(id, date, value, measurementType, user);
         return showAllMeasurements();
     }

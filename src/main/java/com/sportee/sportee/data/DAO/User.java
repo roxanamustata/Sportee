@@ -29,11 +29,6 @@ public class User {
     private Date birthDate;
     private int height;
 
-
-
-//    @OneToOne(mappedBy = "user")
-//    private SporteeMember member;
-
     @ManyToOne
     @JoinColumn(name="role_id")
     private Role role;
@@ -51,9 +46,9 @@ public class User {
     List<GymClass> gymClass;
 
 
-
     @Builder
-    public User(int id, String userName, String password, String firstName, String lastName, Date birthDate, int height, Role role) {
+    public User(int id, String userName, String password, String firstName, String lastName,
+                Date birthDate, int height, Role role) {
         this.id=id;
         this.userName = userName;
         this.password = password;

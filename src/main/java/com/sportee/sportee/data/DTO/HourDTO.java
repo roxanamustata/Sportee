@@ -20,10 +20,7 @@ public class HourDTO {
 
     public void addGymClass (GymClassDTO gymClass){
        int day = gymClass.getDate().getDayOfWeek().getValue();
-
        classes[day-1] =gymClass;
-
-
     }
 
 }

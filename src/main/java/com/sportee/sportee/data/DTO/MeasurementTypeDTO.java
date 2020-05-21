@@ -6,7 +6,6 @@ import lombok.Getter;
 @Getter
 public class MeasurementTypeDTO {
     private int id;
-
     private String name;
     private String unit;
 
