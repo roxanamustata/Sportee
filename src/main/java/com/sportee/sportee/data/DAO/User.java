@@ -28,10 +28,8 @@ public class User {
     private String lastName;
     private Date birthDate;
     private int height;
+    private String role;
 
-    @ManyToOne
-    @JoinColumn(name="role_id")
-    private Role role;
 
     @OneToMany(mappedBy = "user")
     private List<Measurement> measurements;
@@ -40,7 +38,7 @@ public class User {
     private List<Subscription> subscriptions;
 
     @ManyToMany
-    @JoinTable(name = "participatio_to_class")
+    @JoinTable(name = "participation_to_class")
     @JoinColumn(name = "user_id")
     @JoinColumn(name = "gym_class_id")
     List<GymClass> gymClass;
@@ -48,16 +46,15 @@ public class User {
 
     @Builder
     public User(int id, String userName, String password, String firstName, String lastName,
-                Date birthDate, int height, Role role) {
-        this.id=id;
+                Date birthDate, int height, String role) {
+        this.id = id;
         this.userName = userName;
         this.password = password;
         this.firstName = firstName;
         this.lastName = lastName;
         this.birthDate = birthDate;
         this.height = height;
-
-        this.role=role;
+        this.role = role;
     }
 
 }

@@ -6,7 +6,7 @@
 </p>
 <form th:action="@{/users/insert}" method="POST">
     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-    <p>Name: <input type="text" name="userName" REQUIRED/></p>
+    <p>Username: <input type="text" name="userName" REQUIRED/></p>
     <p>Password: <input type="password" name="password" REQUIRED/></p>
     <p>First name: <input type="text" name="firstName"/></p>
     <p>Last name: <input type="text" name="lastName"/></p>

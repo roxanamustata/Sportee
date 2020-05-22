@@ -22,15 +22,15 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 "/gymClassTypes/**", "/subscriptionTypes/**", "/subscriptions/**", "/gymClasses/**","/rooms/**","/users/**" )
                 .permitAll()
                 .anyRequest().authenticated()
-                .and().formLogin().permitAll()
+                .and().formLogin().loginPage("/login").permitAll()
                 .and().logout().permitAll();
     }
 
-//    hardcodat ... ar putea fi folosit pentru admin
+////    hardcodat ... ar putea fi folosit pentru admin
 //    @Bean
 //    @Override
 //    protected UserDetailsService userDetailsService() {
-//        UserDetails user = User.withUsername("memuser").password("{noop}pass").roles("USER").build();
+//        UserDetails user = User.withUsername("admin").password("{noop}pass").roles("ADMIN").build();
 //        return new InMemoryUserDetailsManager(user);
 //    }
 

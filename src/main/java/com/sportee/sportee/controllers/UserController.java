@@ -39,10 +39,10 @@ public class UserController {
 
     @PostMapping("/users/insert")
     public ModelAndView insertUser(String userName, String password, String firstName, String lastName,
-                                  Date birthDate, int height, int role) {
+                                  Date birthDate, int height, String role) {
 
         userService.insertUser(userName, password, firstName, lastName, birthDate, height, role);
-        ModelAndView mv = new ModelAndView("membership");
+        ModelAndView mv = new ModelAndView("login");
         return mv;
 
     }

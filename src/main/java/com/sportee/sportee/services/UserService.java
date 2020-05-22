@@ -1,16 +1,12 @@
 package com.sportee.sportee.services;
 
-import com.sportee.sportee.data.DAO.Role;
 import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.UserDTO;
-import com.sportee.sportee.data.repositories.RoleRepository;
 import com.sportee.sportee.data.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -24,14 +20,14 @@ public class UserService implements IUserService {
 
     private UserRepository userRepository;
 
-    private RoleRepository roleRepository;
+
 //    private JavaMailSender javaMailSender;
 
     @Autowired
-    public UserService(UserRepository userRepository,  RoleRepository roleRepository) {
+    public UserService(UserRepository userRepository) {
         this.userRepository = userRepository;
 
-        this.roleRepository = roleRepository;
+
     }
 
     @Override
@@ -71,13 +67,14 @@ public class UserService implements IUserService {
     }
 
     @Override
-    public void insertUser(String userName, String password, String firstName, String lastName, Date birthDate, int height, int roleId) {
-        Optional<Role> role = roleRepository.findById(roleId);
-        role.ifPresent(r -> {
+    public void insertUser(String userName, String password, String firstName, String lastName,
+                           Date birthDate, int height, String role) {
+
+
             User user = User.builder().userName(userName).password(password).firstName(firstName).lastName(lastName)
-                    .birthDate(birthDate).height(height).role(role.get()).build();
+                    .birthDate(birthDate).height(height).role(role).build();
             userRepository.save(user);
-        });
+
 
 
     }

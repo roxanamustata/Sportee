@@ -20,7 +20,7 @@ public interface IUserService {
 
 
 
-    void insertUser(String name, String password, String firstName, String lastName, Date birthDate, int height, int roleId);
+    void insertUser(String name, String password, String firstName, String lastName, Date birthDate, int height, String role);
 
     void delete(Integer id);
 
