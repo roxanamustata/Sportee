@@ -12,7 +12,13 @@
     <p>Last name: <input type="text" name="lastName"/></p>
     <p>Birth date: <input type="date" name="birthDate"/></p>
     <p>Height: <input type="number" name="height"/></p>
-    <p>Choose 1 (Client) or 2 (Trainer): <input type="number" name="role"/></p>
+    <label>Choose a role from this list:
+        <input list="roles" name="role"/></label>
+    <datalist id="roles">
+        <option value="Client">
+        <option value="Trainer">
+        <option value="Admin">
+    </datalist>
     <p><input type="submit" name="Submit"/></p>
 </form>
 </body>
