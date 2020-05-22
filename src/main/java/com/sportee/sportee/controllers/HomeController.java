@@ -48,12 +48,8 @@ public class HomeController {
     }
 
 
-    @GetMapping({"/membership"})
-    public String login()
-    {
-        return "membership";
-    }
-
+    @GetMapping("/login")
+    public String login(){return "login";}
 
 
 }
