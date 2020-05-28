@@ -1,5 +1,6 @@
 package com.sportee.sportee.data.DAO;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -24,4 +25,12 @@ public class SubscriptionType {
 
     @OneToMany(mappedBy = "subscriptionType")
     private List<Subscription> subscriptions;
+
+    @Builder
+    public SubscriptionType(int id, String name, int duration, int price) {
+        this.id = id;
+        this.name = name;
+        this.duration = duration;
+        this.price = price;
+    }
 }

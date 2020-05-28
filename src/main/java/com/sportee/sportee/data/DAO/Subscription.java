@@ -1,5 +1,6 @@
 package com.sportee.sportee.data.DAO;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
@@ -27,4 +28,12 @@ public class Subscription {
     @JoinColumn(name="userr_id")
     private User user;
 
+    @Builder(toBuilder=true)
+    public Subscription(int id, Date date, boolean valid, SubscriptionType subscriptionType, User user) {
+        this.id = id;
+        this.date = date;
+        this.valid = valid;
+        this.subscriptionType = subscriptionType;
+        this.user = user;
+    }
 }

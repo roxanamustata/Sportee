@@ -6,14 +6,16 @@ import com.sportee.sportee.services.MeasurementService;
 import com.sportee.sportee.services.MeasurementTypeService;
 import com.sportee.sportee.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
 import java.util.Optional;
-
+@PreAuthorize("hasRole('ROLE_TRAINER')")
 @Controller
+@RequestMapping("/measurements")
 public class MeasurementController {
 
     private MeasurementService measurementService;
@@ -27,14 +29,14 @@ public class MeasurementController {
         this.measurementTypeService = measurementTypeService;
     }
 
-    @GetMapping({"/measurements/showAll"})
+    @GetMapping("/")
     public ModelAndView showAllMeasurements() {
         ModelAndView mv = new ModelAndView("measurements");
         mv.addObject("measurements", measurementService.getAllMeasurements());
         return mv;
     }
 
-    @GetMapping("/measurements/insertMeasurement")
+    @GetMapping("/insertMeasurement")
     public ModelAndView insertMeasurement() {
         ModelAndView mv = new ModelAndView("insertMeasurement");
         mv.addObject("users", userService.getAllUsers());
@@ -45,20 +47,21 @@ public class MeasurementController {
         return mv;
     }
 
-    @PostMapping("/measurements/insertMeasurement")
-    public ModelAndView insertMeasurement(Date date, int value, int measurementType, int user) {
+    @RequestMapping(value = "/insertMeasurement", method = RequestMethod.POST)
+    public String insertMeasurement(Date date, int value, int measurementType, int user) {
         measurementService.insertMeasurement(date, value, measurementType, user);
-        return showAllMeasurements();
+        return "redirect:/measurements";
+
     }
 
-    @RequestMapping("/measurements/{id}/delete")
-    public ModelAndView deleteMeasurement(@PathVariable Integer id) {
+    @RequestMapping("/{id}/delete")
+    public String deleteMeasurement(@PathVariable Integer id) {
         measurementService.deleteMeasurement(id);
-        return showAllMeasurements();
+        return "redirect:/measurements";
 
     }
 
-    @GetMapping("/measurements/{id}/editMeasurement")
+    @GetMapping("/{id}/editMeasurement")
     public ModelAndView editMeasurement() {
         ModelAndView mv = new ModelAndView("editMeasurement");
         mv.addObject("users", userService.getAllUsers());
@@ -70,12 +73,12 @@ public class MeasurementController {
 
     }
 
-    @PostMapping("/measurements/{id}/editMeasurement")
-    public ModelAndView editMeasurement(@PathVariable Integer id, Optional<Date> date,
+    @PostMapping("/{id}/editMeasurement")
+    public String editMeasurement(@PathVariable Integer id, Optional<Date> date,
                                         Optional<Integer> value, Optional<MeasurementType> measurementType,
                                         Optional<User> user) {
         measurementService.editMeasurement(id, date, value, measurementType, user);
-        return showAllMeasurements();
+        return "redirect:/measurements";
     }
 
 

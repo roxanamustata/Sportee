@@ -7,13 +7,14 @@ import java.sql.Date;
 
 @Getter
 public class SubscriptionDTO {
-
+    private int id;
     private Date date;
     private boolean valid;
     private String subscriptionType;
     private String user;
 
     public SubscriptionDTO(Subscription subscription) {
+        this.id=subscription.getId();
         this.date = subscription.getDate();
         this.valid = subscription.isValid();
         this.subscriptionType = subscription.getSubscriptionType().getName();
