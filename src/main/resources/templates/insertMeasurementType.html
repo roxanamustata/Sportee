@@ -5,13 +5,11 @@
     Insert
 </p>
 <form th:action="@{/measurementTypes/insertMeasurementType}" method="POST">
-    <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+
     <p>Measurement Type: <input type="text" name="name"/></p>
     <p>Unit: <input type="text" name="unit"/></p>
-
-
-
     <p><input type="submit" name="Submit"/></p>
+
 </form>
 </body>
 </html>

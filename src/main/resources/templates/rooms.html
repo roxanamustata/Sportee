@@ -1,19 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.w3.org/1999/xhtml">
 
 <head>
-    <!--    <link rel="stylesheet" type="text/css" href="/css/users.css"/>-->
+
 </head>
 
 <body>
-<!--<div class="logout" style="float:right">-->
-<!--    <p th:text="#{}"> Hallo </p>-->
-<!--    <span th:text="${#httpServletRequest.remoteUser}">User</span>-->
-<!--    <form th:action="@{/logout}" method="post">-->
-<!--        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
-<!--        <input type="submit" value="Logout"/>-->
-<!--    </form>-->
-<!--</div>-->
+
 
 <p>
 <li th:each="m: ${rooms}">

@@ -5,7 +5,7 @@
     Insert
 </p>
 <form th:action="@{/measurements/insertMeasurement}" method="POST">
-    <!--    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>-->
+
     <p>Member:
         <select class="form-control" required="required" name="user" >
         <option disabled="disabled" selected="selected" > --
@@ -30,8 +30,6 @@
     </p>
 
     <p>Value: <input type="number" name="value"/></p>
-
-
 
     <p><input type="submit" name="Submit"/></p>
 </form>
