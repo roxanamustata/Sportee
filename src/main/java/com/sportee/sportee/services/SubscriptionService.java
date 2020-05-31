@@ -46,12 +46,21 @@ public class SubscriptionService implements ISubscriptionService {
     }
 
     @Override
-    public void deleteMeasurement(Integer id) {
-
+    public void deleteSubscription(Integer id) {
+        subscriptionRepository.deleteById(id);
     }
 
     @Override
-    public void editMeasurement(Integer id, Optional<Date> date, Optional<Integer> valid, Optional<SubscriptionType> subscriptionType, Optional<User> user) {
+    public void editSubscription(Integer id, Optional<Date> date, Optional<Boolean> valid) {
+        Optional<Subscription> subscription = subscriptionRepository.findById(id);
+        Optional<SubscriptionType> subscriptionType = subscriptionTypeRepository.findById(id);
+
+
+        subscription.ifPresent(s -> {
+            date.ifPresent(d -> s.setDate(d));
+            valid.ifPresent(v -> s.setValid(v));
+            subscriptionRepository.save(s);
+        });
 
     }
 

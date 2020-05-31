@@ -15,8 +15,7 @@ public interface ISubscriptionService {
 
     void insertSubscription(Date date, boolean valid, int subscriptionType, int user);
 
-    void deleteMeasurement(Integer id);
+    void deleteSubscription(Integer id);
 
-    void editMeasurement(Integer id, Optional<Date> date, Optional<Integer> valid,
-                         Optional<SubscriptionType> subscriptionType, Optional<User> user);
+    void editSubscription(Integer id, Optional<Date> date, Optional<Boolean> valid);
 }

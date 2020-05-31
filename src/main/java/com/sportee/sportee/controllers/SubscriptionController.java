@@ -1,6 +1,7 @@
 package com.sportee.sportee.controllers;
 
 import com.sportee.sportee.data.DAO.MeasurementType;
+import com.sportee.sportee.data.DAO.SubscriptionType;
 import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.services.SubscriptionService;
 import com.sportee.sportee.services.SubscriptionTypeService;
@@ -53,31 +54,26 @@ public class SubscriptionController {
 
     }
 
-//    @RequestMapping("/{id}/delete")
-//    public String deleteMeasurement(@PathVariable Integer id) {
-//        measurementService.deleteMeasurement(id);
-//        return "redirect:/measurements";
-//
-//    }
-//
-//    @GetMapping("/{id}/editMeasurement")
-//    public ModelAndView editMeasurement() {
-//        ModelAndView mv = new ModelAndView("editMeasurement");
-//        mv.addObject("users", userService.getAllUsers());
-//        mv.addObject("measurementTypes", measurementTypeService.getAllMeasurementTypes());
-//
-//        mv.addObject("selectedMember", "");
-//        mv.addObject("selectedMeasurementType", "");
-//        return mv;
-//
-//    }
-//
-//    @PostMapping("/{id}/editMeasurement")
-//    public String editMeasurement(@PathVariable Integer id, Optional<Date> date,
-//                                  Optional<Integer> value, Optional<MeasurementType> measurementType,
-//                                  Optional<User> user) {
-//        measurementService.editMeasurement(id, date, value, measurementType, user);
-//        return "redirect:/measurements";
-//    }
+    @RequestMapping("/{id}/delete")
+    public String deleteMeasurement(@PathVariable Integer id) {
+        subscriptionService.deleteSubscription(id);
+        return "redirect:/subscriptions";
+
+    }
+
+
+    @GetMapping("/{id}/editSubscription")
+    public ModelAndView editSubscription() {
+        ModelAndView mv = new ModelAndView("editSubscription");
+        return mv;
+
+    }
+
+    @PostMapping("/{id}/editSubscription")
+    public String editSubscription(@PathVariable Integer id, Optional<Date> date,
+                                   Optional<Boolean> valid) {
+        subscriptionService.editSubscription(id, date, valid);
+        return "redirect:/subscriptions";
+    }
 
 }

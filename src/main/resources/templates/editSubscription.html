@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>
+    Edit
+</p>
+
+<form th:action="@{editSubscription(subscription.id)}" method="POST">
+
+    <p>Date: <input type="date" name="date"/></p>
+
+    <p>Valid: <input type="text" name="valid"/></p>
+
+    <p><input type="submit" name="Submit"/></p>
+</form>
+</body>
+</html>
