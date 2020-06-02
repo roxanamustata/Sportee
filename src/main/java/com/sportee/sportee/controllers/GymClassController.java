@@ -1,6 +1,8 @@
 package com.sportee.sportee.controllers;
 
 import com.sportee.sportee.services.GymClassService;
+import com.sportee.sportee.services.GymClassTypeService;
+import com.sportee.sportee.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
@@ -10,8 +12,6 @@ import org.springframework.web.servlet.ModelAndView;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.util.ArrayList;
-import java.util.Date;
 import java.util.Optional;
 
 
@@ -19,13 +19,17 @@ import java.util.Optional;
 @RequestMapping("/gymClasses")
 public class GymClassController {
     private GymClassService gymClassService;
+    private GymClassTypeService gymClassTypeService;
+    private RoomService roomService;
 
     @Autowired
-    public GymClassController(GymClassService gymClassService) {
+    public GymClassController(GymClassService gymClassService, GymClassTypeService gymClassTypeService, RoomService roomService) {
         this.gymClassService = gymClassService;
+        this.gymClassTypeService = gymClassTypeService;
+        this.roomService = roomService;
     }
 
-    @GetMapping("/showAll")
+    @GetMapping("/")
     public ModelAndView showAllGymClasses() {
         ModelAndView mv = new ModelAndView("gymClasses");
         mv.addObject("gymClasses", gymClassService.getAllGymClasses());
@@ -33,14 +37,20 @@ public class GymClassController {
     }
 
     @GetMapping("/insertGymClass")
-    public String insertGymClass() {
-        return "insertGymClass";
+    public ModelAndView insertGymClass() {
 
+        ModelAndView mv = new ModelAndView("insertGymClass");
+        mv.addObject("gymClassTypes", gymClassTypeService.getAllGymClassTypes());
+        mv.addObject("rooms", roomService.getAllRooms());
+
+        mv.addObject("selectedGymClassType", "");
+        mv.addObject("selectedRoom", "");
+        return mv;
     }
 
     @PostMapping("/insertGymClass")
 
-    public ModelAndView insertGymClass(@RequestParam(value = "date")
+    public String insertGymClass(@RequestParam(value = "date")
                                        @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) LocalDate date,
 
                                        @RequestParam(value = "time")
@@ -48,13 +58,13 @@ public class GymClassController {
 
         LocalDateTime dateTime = LocalDateTime.of(date, time);
         gymClassService.insertGymClass(dateTime, gymClassType, room);
-        return showAllGymClasses();
+        return "redirect:/gymClasses";
     }
 
     @RequestMapping("/{id}/delete")
-    public ModelAndView deleteGymClass(@PathVariable Integer id) {
+    public String deleteGymClass(@PathVariable Integer id) {
         gymClassService.deleteGymClass(id);
-        return showAllGymClasses();
+        return "redirect:/gymClasses";
 
     }
 
@@ -66,14 +76,14 @@ public class GymClassController {
     }
 
     @PostMapping("/{id}/editGymClass")
-    public ModelAndView editGymClass(@PathVariable Integer id,
+    public String editGymClass(@PathVariable Integer id,
                                      @RequestParam(value = "date") @DateTimeFormat(iso = DateTimeFormat.ISO.DATE) Optional<LocalDate> date,
                                      @RequestParam(value = "time") @DateTimeFormat(iso = DateTimeFormat.ISO.TIME) Optional<LocalTime> time,
                                      Optional<Integer> gymClassType, Optional<Integer> room) {
 
         Optional<LocalDateTime> dateTime= Optional.of(LocalDateTime.of(date.get(), time.get()));
         gymClassService.editGymClass(id, dateTime, gymClassType, room);
-        return showAllGymClasses();
+        return "redirect:/gymClasses";
     }
 
 

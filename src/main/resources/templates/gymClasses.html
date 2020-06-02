@@ -1,44 +1,147 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
-
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.w3.org/1999/xhtml">
 <head>
+    <title>Sportee</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
+    <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:100,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
+          rel="stylesheet">
+
+    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="css/animate.css">
+
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
+    <link rel="stylesheet" href="css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="css/magnific-popup.css">
+
+    <link rel="stylesheet" href="css/aos.css">
+
+    <link rel="stylesheet" href="css/ionicons.min.css">
+
+    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="css/jquery.timepicker.css">
+
+
+    <link rel="stylesheet" href="css/flaticon.css">
+    <link rel="stylesheet" href="css/icomoon.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
-
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
+    <div class="container pl-0">
+        <a class="navbar-brand py-2 px-4" href="home.html">Sportee</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="ftco-nav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item"><a href="/home" class="nav-link pl-0">Home</a></li>
+                <li class="nav-item"><a href="/gym" class="nav-link pl-0">Classes</a></li>
+                <li class="nav-item"><a href="/trainers" class="nav-link pl-0">Trainers</a></li>
+                <li class="nav-item"><a href="/schedule" class="nav-link pl-0">Schedule</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link pl-0">Contact</a></li>
+                <li class="nav-item"><a href="/login" class="nav-link pl-0">Membership</a></li>
 
-<p>
+                <li class="nav-item"><a href="/users" class="nav-link pl-0">Users</a></li>
+                <li class="nav-item"><a href="/subscriptions" class="nav-link pl-0">Subscriptions</a></li>
+                <li class="nav-item"><a href="/gymClasses" class="nav-link pl-0">Planning</a></li>
+                <li class="nav-item"><a href="/measurements" class="nav-link pl-0">Measurements</a></li>
 
-<table border="2" width="70%" cellpadding="2">
-    <tr><th>Date&Hour</th><th>Class</th><th>Unit</th><th>Edit</th><th>Delete</th></tr>
-    <tr th:each="m: ${gymClasses}">
-        <td th:text="${m.id}"> </td>
-        <td th:text="${m.date}"> </td>
-        <td th:text="${m.gymClassType}"> </td>
-        <td th:text="${m.room}">  </td>
-        <td> <a th:href="@{/gymClasses/{id}/editGymClass(id=${m.id})}">
-
-            Edit</a>
-
-        </td>
-        <td> <a th:href="@{/gymClasses/{id}/delete(id=${m.id})}">
-            Delete</a>
-
-
-        </td>
-
-
-    </tr>
-</table>
-
-</p>
-
-<p>
+            </ul>
+        </div>
+    </div>
+</nav>
 
 
+<section class="hero-wrap" >
+    <div class="overlay"></div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
+            <div class="col-md-9 ftco-animate text-center">
+                <h6 class="mb-3 bread">Plan the classes for next week</h6>
+                <!--            <p class="breadcrumbs"><span class="mr-2"><a href="home.html">Home</a></span> <span>Contact</span></p>-->
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="ftco-section contact-section">
+    <div class="container">
+        <table border="2" width="70%" cellpadding="2">
+            <tr><th>No</th><th>Date&Hour</th><th>Class</th><th>Room</th><th>Edit</th><th>Delete</th></tr>
+            <tr th:each="m: ${gymClasses}">
+                <td th:text="${m.id}"> </td>
+                <td th:text="${m.date}"> </td>
+                <td th:text="${m.gymClassType}"> </td>
+                <td th:text="${m.room}">  </td>
+                <td> <a th:href="@{/gymClasses/{id}/editGymClass(id=${m.id})}">
+                    Edit</a>
+                </td>
+                <td> <a th:href="@{/gymClasses/{id}/delete(id=${m.id})}">
+                    Delete</a>
+                </td>
+            </tr>
+        </table>
+        </p>
+        <p>
+            <a href="/gymClasses/insertGymClass"> Add </a> new gym class
+        </p>
+    </div>
+</section>
+
+<footer class="ftco-footer ftco-section img">
+
+    <div class="col-md-12 text-center">
+
+        <p>
+            Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+            All rights reserved | This template is made with <i class="icon-heart" aria-hidden="true"></i> by <a
+                href="https://colorlib.com" target="_blank">Colorlib</a>
+        </p>
+    </div>
+
+</footer>
+
+<div id="ftco-loader" class="show fullscreen">
+    <svg class="circular" width="48px" height="48px">
+        <circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee"/>
+        <circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10"
+                stroke="#F96D00"/>
+    </svg>
+</div>
 
 
-</p>
+<script src="js/jquery.min.js"></script>
+<script src="js/jquery-migrate-3.0.1.min.js"></script>
+<script src="js/popper.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.easing.1.3.js"></script>
+<script src="js/jquery.waypoints.min.js"></script>
+<script src="js/jquery.stellar.min.js"></script>
+<script src="js/owl.carousel.min.js"></script>
+<script src="js/jquery.magnific-popup.min.js"></script>
+<script src="js/aos.js"></script>
+<script src="js/jquery.animateNumber.min.js"></script>
+<script src="js/bootstrap-datepicker.js"></script>
+<script src="js/jquery.timepicker.min.js"></script>
+<script src="js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="js/google-map.js"></script>
+<script src="js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

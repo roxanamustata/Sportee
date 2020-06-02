@@ -9,9 +9,29 @@
     <p><span>Date and hour: <input type="date" name="date"  REQUIRED/></span>
         <span><input type="time" name="time" min="09:00" max="20:01" REQUIRED/></span>
     </p>
+    <p>Gym Class Type:
+        <select class="form-control" required="required" name="gymClassType" >
+            <option disabled="disabled" selected="selected" > --
+                alege tipul de clasa --</option>
+            <option th:each="gymClassType : ${gymClassTypes}" th:value="${gymClassType.id}"
+                    th:text="${gymClassType.name}" ></option>
 
-    <p>Gym class: <input type="number" name="gymClassType"/></p>
-    <p>Room: <input type="number" name="room"/></p>
+        </select>
+
+    </p>
+
+    <p>Room:
+        <select class="form-control" required="required" name="room" >
+            <option disabled="disabled" selected="selected" > --
+                alege sala --</option>
+            <option th:each="room : ${rooms}" th:value="${room.id}"
+                    th:text="${room.name}" ></option>
+
+        </select>
+
+    </p>
+
+
     <p><input type="submit" name="Submit"/></p>
 </form>
 </body>
