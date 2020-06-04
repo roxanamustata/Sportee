@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 
 @Controller
-
+@RequestMapping("/users")
 public class UserController {
     private UserService userService;
 
@@ -24,34 +24,33 @@ public class UserController {
 
     }
 
-    @RequestMapping({"/users/showAll", "/"})
+    @RequestMapping( "/")
     public ModelAndView showAllUsers() {
         ModelAndView mv = new ModelAndView("users");
         mv.addObject("users", userService.getAllUsers());
         return mv;
     }
 
-    @GetMapping("/users/insert")
+    @GetMapping("/insert")
     public String insertUser() {
         return "insertUser";
 
     }
 
-    @PostMapping("/users/insert")
-    public ModelAndView insertUser(String userName, String password, String firstName, String lastName,
+    @PostMapping("/insert")
+    public String insertUser(String userName, String password, String firstName, String lastName,
                                   Date birthDate, int height, String role) {
 
         userService.insertUser(userName, password, firstName, lastName, birthDate, height, role);
-        ModelAndView mv = new ModelAndView("login");
-        return mv;
+       return "redirect:/login";
 
     }
 
 
-    @RequestMapping("/users/{id}/delete")
-    public ModelAndView deleteUser(@PathVariable Integer id) {
+    @RequestMapping("/{id}/delete")
+    public String deleteUser(@PathVariable Integer id) {
         userService.delete(id);
-        return showAllUsers();
+        return "redirect:/users";
 
     }
 }
