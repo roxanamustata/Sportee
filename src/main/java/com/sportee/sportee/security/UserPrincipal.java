@@ -1,4 +1,4 @@
-package com.sportee.sportee.services;
+package com.sportee.sportee.security;
 
 
 import com.sportee.sportee.data.DAO.User;
@@ -10,16 +10,17 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-public class CustomUserDetails implements UserDetails {
+public class UserPrincipal implements UserDetails {
     private User user;
 
-    public CustomUserDetails(User user) {
+    public UserPrincipal(User user) {
         this.user = user;
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
 
+        // Extract list of roles (ROLE_name)
         List<GrantedAuthority> authorities = new ArrayList<>();
         this.user.getRoleList().forEach(r -> {
             GrantedAuthority authority = new SimpleGrantedAuthority("ROLE_" + r);
