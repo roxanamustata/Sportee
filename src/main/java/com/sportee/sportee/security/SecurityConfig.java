@@ -3,6 +3,7 @@ package com.sportee.sportee.security;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
@@ -12,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -23,6 +25,19 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SecurityConfig(UserPrincipalDetailsService userPrincipalDetailsService) {
         this.userPrincipalDetailsService = userPrincipalDetailsService;
     }
+
+//    @Override
+//    protected void configure(AuthenticationManagerBuilder auth) {
+//        auth.authenticationProvider(authenticationProvider());
+//    }
+
+
+    @Bean
+    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
+        return new MyAuthenticationSuccessHandler();
+    }
+
+
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
@@ -46,10 +61,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .httpBasic();
         http
                 .authorizeRequests()
-                .antMatchers("/home.html", "/contact/**","/schedule/**","/trainers/**", "/membership/**", "/users/insert").permitAll()
+                .antMatchers("/home.html", "/contact/**","/schedule/**","/trainers/**", "/login/**", "/users/insert").permitAll()
                 .antMatchers("/gymClassTypes/**","/subscriptionTypes/**", "/subscriptions/**",
                         "/gymClasses/**","/rooms/**","/users/**", "/measurements/**").authenticated()
-                .antMatchers("/gymClassTypes/**","/subscriptionTypes/**", "/subscriptions/**",
+                .antMatchers(
+                        "/gymClassTypes/**","/subscriptionTypes/**", "/subscriptions/**",
                         "/gymClasses/**","/rooms/**","/users/**").hasRole("admin")
                 .antMatchers("/measurements/**").hasRole("trainer")
 //                .antMatchers("/management/**").hasAnyRole("ADMIN", "MANAGER")
@@ -57,8 +73,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/signin")
-                .loginPage("/login").permitAll()
-                .usernameParameter("username")
+                .loginPage("/login").permitAll().
+                successHandler(myAuthenticationSuccessHandler()).usernameParameter("username")
                 .passwordParameter("password")
                 .and()
                 .logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/login");
@@ -70,7 +86,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     }
 
 
-        DaoAuthenticationProvider authenticationProvider(){
+
+
+    DaoAuthenticationProvider authenticationProvider(){
             DaoAuthenticationProvider daoAuthenticationProvider = new DaoAuthenticationProvider();
             daoAuthenticationProvider.setPasswordEncoder(passwordEncoder());
             daoAuthenticationProvider.setUserDetailsService(this.userPrincipalDetailsService);
