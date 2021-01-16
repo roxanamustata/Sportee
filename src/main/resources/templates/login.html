@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:tiles="http://www.w3.org/1999/xhtml" >
+      xmlns:tiles="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Sportee</title>
     <meta charset="utf-8">
@@ -32,7 +32,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container pl-0">
         <a class="navbar-brand py-2 px-4" href="/home">Sportee</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
@@ -44,14 +45,20 @@
                 <li class="nav-item"><a href="/contact" class="nav-link pl-0">Contact</a></li>
                 <li class="nav-item active"><a href="/login" class="nav-link pl-0">Membership</a></li>
 
-<!--                <li class="nav-item"><a href="/users" class="nav-link pl-0">Users</a></li>-->
-<!--                <li class="nav-item"><a href="/subscriptions" class="nav-link pl-0">Subscriptions</a></li>-->
-<!--                <li class="nav-item"><a href="/gymClasses" class="nav-link pl-0">Planning</a></li>-->
-<!--                <li class="nav-item"><a href="/measurements" class="nav-link pl-0">Measurements</a></li>-->
+                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/users"
+                                                                              class="nav-link pl-0">Users</a></li>
+                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/subscriptions"
+                                                                              class="nav-link pl-0">Subscriptions</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/gymClasses" class="nav-link pl-0">Planning</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_trainer')" class="nav-item"><a href="/measurements"
+                                                                                class="nav-link pl-0">Measurements</a>
+                </li>
 
             </ul>
             <div th:if="${#httpServletRequest.remoteUser != null}">
-                <form th:action="@{/logout}" method="post" > Hello [[${#httpServletRequest.remoteUser}]]!
+                <form th:action="@{/logout}" method="post"> Hello [[${#httpServletRequest.remoteUser}]]!
                     <input type="submit" value="Sign Out"/>
                 </form>
             </div>
@@ -75,7 +82,7 @@
 <section class="ftco-section contact-section">
     <div class="container">
         <div tiles:fragment="content">
-            <form name="f" th:action="@{/signin}" method="post">
+            <form name="f" th:action="@{/login}" method="post">
                 <fieldset>
                     <legend>Please Login</legend>
                     <div th:if="${param.error}" class="alert alert-error">

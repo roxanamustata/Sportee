@@ -12,7 +12,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
 import java.util.Optional;
-@PreAuthorize("hasRole('ROLE_TRAINER')")
+@PreAuthorize("hasRole('ROLE_trainer')")
 @Controller
 @RequestMapping("/measurementTypes")
 public class MeasurementTypeController {

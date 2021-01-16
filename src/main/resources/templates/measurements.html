@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Sportee</title>
     <meta charset="utf-8">
@@ -31,7 +32,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container pl-0">
         <a class="navbar-brand py-2 px-4" href="/home">Sportee</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
@@ -42,25 +44,34 @@
                 <li class="nav-item"><a href="/schedule" class="nav-link pl-0">Schedule</a></li>
                 <li class="nav-item"><a href="/contact" class="nav-link pl-0">Contact</a></li>
                 <li class="nav-item"><a href="/login" class="nav-link pl-0">Membership</a></li>
-
-<!--                <li class="nav-item"><a href="/users" class="nav-link pl-0">Users</a></li>-->
-<!--                <li class="nav-item"><a href="/subscriptions" class="nav-link pl-0">Subscriptions</a></li>-->
-<!--                <li class="nav-item"><a href="/gymClasses" class="nav-link pl-0">Planning</a></li>-->
-                <li class="nav-item"><a href="/measurements" class="nav-link pl-0">Measurements</a></li>
-
+                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/users"
+                                                                              class="nav-link pl-0">Users</a></li>
+                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/subscriptions"
+                                                                              class="nav-link pl-0">Subscriptions</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/gymClasses" class="nav-link pl-0">Planning</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_trainer')" class="nav-item"><a href="/measurements"
+                                                                                class="nav-link pl-0">Measurements</a>
+                </li>
             </ul>
+            <div th:if="${#httpServletRequest.remoteUser != null}">
+                <form th:action="@{/logout}" method="post"> Hello [[${#httpServletRequest.remoteUser}]]!
+                    <input type="submit" value="Sign Out"/>
+                </form>
+            </div>
         </div>
     </div>
 </nav>
 
 
-<section class="hero-wrap" >
+<section class="hero-wrap">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
                 <h6 class="mb-3 bread">Measurements</h6>
-                    <!--            <p class="breadcrumbs"><span class="mr-2"><a href="home.html">Home</a></span> <span>Contact</span></p>-->
+                <!--            <p class="breadcrumbs"><span class="mr-2"><a href="home.html">Home</a></span> <span>Contact</span></p>-->
             </div>
         </div>
     </div>
@@ -70,21 +81,30 @@
     <div class="container">
         <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name...">
         <table id="usersTable" border="2" width="70%" cellpadding="2">
-            <tr><th>Id</th><th>Member</th><th>Date</th><th>Measurement Type</th><th>Value</th><th>Unit</th><th>Edit</th><th>Delete</th></tr>
+            <tr>
+                <th>Id</th>
+                <th>Member</th>
+                <th>Date</th>
+                <th>Measurement Type</th>
+                <th>Value</th>
+                <th>Unit</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
             <tr th:each="m: ${measurements}">
-                <td th:text="${m.id}"> </td>
-                <td th:text="${m.user}"> </td>
-                <td th:text="${m.date}"> </td>
-                <td th:text="${m.measurementType}"> </td>
-                <td th:text="${m.value}"> </td>
-                <td th:text="${m.unit}">  </td>
-                <td> <a th:href="@{/measurements/{id}/editMeasurement(id=${m.id})}">
+                <td th:text="${m.id}"></td>
+                <td th:text="${m.user}"></td>
+                <td th:text="${m.date}"></td>
+                <td th:text="${m.measurementType}"></td>
+                <td th:text="${m.value}"></td>
+                <td th:text="${m.unit}"></td>
+                <td><a th:href="@{/measurements/{id}/editMeasurement(id=${m.id})}">
 
 
                     Edit</a>
 
                 </td>
-                <td> <a th:href="@{/measurements/{id}/delete(id=${m.id})}">
+                <td><a th:href="@{/measurements/{id}/delete(id=${m.id})}">
                     Delete</a>
 
 
@@ -161,6 +181,7 @@ function myFunction() {
     }
   }
 }
+
 </script>
 </body>
 </html>

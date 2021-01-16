@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:tiles="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Sportee</title>
     <meta charset="utf-8">
@@ -44,12 +45,23 @@
                 <li class="nav-item"><a href="/contact" class="nav-link pl-0">Contact</a></li>
                 <li class="nav-item"><a href="/login" class="nav-link pl-0">Membership</a></li>
 
-                <li class="nav-item"><a href="/users" class="nav-link pl-0">Users</a></li>
-                <li class="nav-item"><a href="/subscriptions" class="nav-link pl-0">Subscriptions</a></li>
-                <li class="nav-item"><a href="/gymClasses" class="nav-link pl-0">Planning</a></li>
-                <li class="nav-item"><a href="/measurements" class="nav-link pl-0">Measurements</a></li>
+                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/users"
+                                                                              class="nav-link pl-0">Users</a></li>
+                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/subscriptions"
+                                                                              class="nav-link pl-0">Subscriptions</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/gymClasses" class="nav-link pl-0">Planning</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_trainer')" class="nav-item"><a href="/measurements"
+                                                                                class="nav-link pl-0">Measurements</a>
+                </li>
 
             </ul>
+            <div th:if="${#httpServletRequest.remoteUser != null}">
+                <form th:action="@{/logout}" method="post"> Hello [[${#httpServletRequest.remoteUser}]]!
+                    <input type="submit" value="Sign Out"/>
+                </form>
+            </div>
         </div>
     </div>
 </nav>
@@ -170,10 +182,10 @@ function myFunction() {
     }
   }
 }
+
 </script>
 </body>
 </html>
-
 
 
 </body>

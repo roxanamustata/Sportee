@@ -5,6 +5,7 @@ import com.sportee.sportee.services.GymClassTypeService;
 import com.sportee.sportee.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -14,7 +15,7 @@ import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.Optional;
 
-
+@PreAuthorize("hasRole('ROLE_admin')")
 @Controller
 @RequestMapping("/gymClasses")
 public class GymClassController {

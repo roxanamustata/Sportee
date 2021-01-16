@@ -15,6 +15,8 @@ public class SporteeApplication implements WebMvcConfigurer {
 		SpringApplication.run(SporteeApplication.class, args);
 	}
 
+
+
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 

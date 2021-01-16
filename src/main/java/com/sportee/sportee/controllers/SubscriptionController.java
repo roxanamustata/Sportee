@@ -14,7 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
 import java.util.Optional;
-
+@PreAuthorize("hasRole('ROLE_admin')")
 @Controller
 @RequestMapping("/subscriptions")
 public class SubscriptionController {
