@@ -50,7 +50,9 @@
                 <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/subscriptions" class="nav-link pl-0">Subscriptions</a></li>
                 <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/gymClasses" class="nav-link pl-0">Planning</a></li>
                 <li sec:authorize="hasRole('ROLE_trainer')" class="nav-item"><a href="/measurements" class="nav-link pl-0">Measurements</a></li>
-
+                <li sec:authorize="hasAnyRole('ROLE_trainer', 'ROLE_admin')" class="nav-item"><a href="/gymClassBookings"
+                                                                                                 class="nav-link pl-0">Bookings</a>
+                </li>
             </ul>
             <div th:if="${#httpServletRequest.remoteUser != null}">
                 <form th:action="@{/logout}" method="post" > Hello [[${#httpServletRequest.remoteUser}]]!

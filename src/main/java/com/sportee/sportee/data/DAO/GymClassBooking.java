@@ -6,34 +6,33 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.Date;
+
 
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
 @NoArgsConstructor
-public class Subscription {
+public class GymClassBooking {
+
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     @Id
     private int id;
-    private Date date;
-    private boolean valid;
 
     @ManyToOne
-    @JoinColumn(name="subscription_type_id")
-    private SubscriptionType subscriptionType;
+    @JoinColumn(name = "gym_class_id")
+    private GymClass gymClass;
+
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
+
     @Builder(toBuilder=true)
-    public Subscription(int id, Date date, boolean valid, SubscriptionType subscriptionType, User user) {
+    public GymClassBooking(int id, GymClass gymClass, User user) {
         this.id = id;
-        this.date = date;
-        this.valid = valid;
-        this.subscriptionType = subscriptionType;
+        this.gymClass = gymClass;
         this.user = user;
     }
 }

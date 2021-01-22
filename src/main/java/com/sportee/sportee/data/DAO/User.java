@@ -39,11 +39,14 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Subscription> subscriptions;
 
-    @ManyToMany
-    @JoinTable(name = "participation_to_class")
-    @JoinColumn(name = "user_id")
-    @JoinColumn(name = "gym_class_id")
-    List<GymClass> gymClass;
+    @OneToMany(mappedBy = "user")
+    List<GymClassBooking> bookings;
+
+//    @ManyToMany
+//    @JoinTable(name = "participation_to_class")
+//    @JoinColumn(name = "user_id")
+//    @JoinColumn(name = "gym_class_id")
+//    List<GymClass> gymClass;
 
 
     @Builder

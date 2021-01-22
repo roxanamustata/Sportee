@@ -1,9 +1,6 @@
 package com.sportee.sportee.data.DAO;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 import java.sql.Date;
@@ -29,16 +26,19 @@ public class GymClass {
     @JoinColumn(name = "gym_class_type_id")
     private GymClassType gymClassType;
 
+
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
 
 
-    @ManyToMany(mappedBy = "gymClass")
-    List<User> user;
+//    @ManyToMany(mappedBy = "gymClass")
+
+    @OneToMany(mappedBy = "gymClass")
+    List<GymClassBooking> bookings;
 
 
-    @Builder
+    @Builder(toBuilder=true)
     public GymClass(int id, LocalDateTime date, GymClassType gymClassType, Room room) {
         this.id=id;
         this.date = date;

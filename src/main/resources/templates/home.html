@@ -54,6 +54,9 @@
                 <li sec:authorize="hasRole('ROLE_trainer')" class="nav-item"><a href="/measurements"
                                                                                 class="nav-link pl-0">Measurements</a>
                 </li>
+                <li sec:authorize="hasAnyRole('ROLE_trainer', 'ROLE_admin')" class="nav-item"><a href="/gymClassBookings"
+                                                                                class="nav-link pl-0">Bookings</a>
+                </li>
 
             </ul>
 

@@ -1,20 +1,11 @@
 package com.sportee.sportee.controllers;
 
 
-import com.sportee.sportee.services.GymClassService;
-import com.sportee.sportee.services.MeasurementService;
-import com.sportee.sportee.services.SubscriptionService;
-import com.sportee.sportee.services.UserService;
+import com.sportee.sportee.services.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.security.Principal;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.UUID;
 
 @Controller
 public class HomeController {
@@ -24,13 +15,15 @@ public class HomeController {
     private MeasurementService measurementService;
     private UserService userService;
     private SubscriptionService subscriptionService;
+    private GymClassBookingService gymClassBookingService;
 
     @Autowired
-    public HomeController(GymClassService gymClassService, MeasurementService measurementService, UserService userService, SubscriptionService subscriptionService) {
+    public HomeController(GymClassService gymClassService, MeasurementService measurementService, UserService userService, SubscriptionService subscriptionService, GymClassBookingService gymClassBookingService) {
         this.gymClassService = gymClassService;
         this.measurementService = measurementService;
         this.userService = userService;
         this.subscriptionService = subscriptionService;
+        this.gymClassBookingService = gymClassBookingService;
     }
 
     @GetMapping({"/", "/home"})
@@ -97,4 +90,11 @@ public class HomeController {
         mv.addObject("subscriptions", subscriptionService.getAllSubscriptions());
         return mv;
     }
+    @GetMapping("/gymClassBookings")
+    public ModelAndView gymClassBookings() {
+        ModelAndView mv = new ModelAndView("gymClassBookings");
+        mv.addObject("gymClassBookings", gymClassBookingService.getAllGymClassBookings());
+        return mv;
+    }
+
 }

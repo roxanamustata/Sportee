@@ -24,4 +24,6 @@ public class GymClassDTO {
 
     public GymClassDTO() {
     }
+
+
 }

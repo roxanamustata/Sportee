@@ -1,6 +1,5 @@
 package com.sportee.sportee.security;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -8,7 +7,6 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
@@ -20,18 +18,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     public SecurityConfig(UserPrincipalDetailsService userPrincipalDetailsService) {
         this.userPrincipalDetailsService = userPrincipalDetailsService;
     }
-
-//    @Override
-//    protected void configure(AuthenticationManagerBuilder auth) {
-//        auth.authenticationProvider(authenticationProvider());
-//    }
-
-
-//    @Bean
-//    public AuthenticationSuccessHandler myAuthenticationSuccessHandler(){
-//        return new MyAuthenticationSuccessHandler();
-//    }
-
 
 
     @Override
@@ -56,15 +42,14 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .httpBasic();
         http
                 .authorizeRequests()
-                .antMatchers("/home.html", "/contact/**","/schedule/**","/trainers/**", "/login/**", "/users/insert").permitAll()
+                .antMatchers("/home.html", "/contact/**","/schedule/**","/trainers/**", "/login/**", "/users/insert" ).permitAll()
                 .antMatchers("/gymClassTypes/**","/subscriptionTypes/**", "/subscriptions/**",
-                        "/gymClasses/**","/rooms/**","/users/**", "/measurements/**").authenticated()
+                        "/gymClasses/**","/rooms/**","/users/**", "/measurements/**", "/gymClassBookings/**").authenticated()
                 .antMatchers(
                         "/gymClassTypes/**","/subscriptionTypes/**", "/subscriptions/**",
                         "/gymClasses/**","/rooms/**","/users/**").hasRole("admin")
                 .antMatchers("/measurements/**").hasRole("trainer")
-//                .antMatchers("/management/**").hasAnyRole("ADMIN", "MANAGER")
-//                .antMatchers("/api/public/users").hasRole("ADMIN")
+                .antMatchers( "/gymClassBookings/**").hasAnyRole("trainer", "admin")
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
@@ -80,8 +65,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 
     }
-
-
 
 
     DaoAuthenticationProvider authenticationProvider(){

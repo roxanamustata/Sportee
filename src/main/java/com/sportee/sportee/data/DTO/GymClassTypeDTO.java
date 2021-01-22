@@ -16,4 +16,5 @@ public class GymClassTypeDTO {
         this.duration = gymClassType.getDuration();
     }
 
+
 }
