@@ -55,7 +55,6 @@ public class SubscriptionService implements ISubscriptionService {
         Optional<Subscription> subscription = subscriptionRepository.findById(id);
         Optional<SubscriptionType> subscriptionType = subscriptionTypeRepository.findById(id);
 
-
         subscription.ifPresent(s -> {
             date.ifPresent(d -> s.setDate(d));
             valid.ifPresent(v -> s.setValid(v));
@@ -63,6 +62,5 @@ public class SubscriptionService implements ISubscriptionService {
         });
 
     }
-
 
 }

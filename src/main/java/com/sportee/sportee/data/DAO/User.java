@@ -7,8 +7,6 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.sql.Date;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -63,7 +61,7 @@ public class User {
     }
 
     public List<String> getRoleList() {
-        if(this.role.length() > 0){
+        if (this.role.length() > 0) {
             return Arrays.asList(this.role.split(","));
         }
         return new ArrayList<>();

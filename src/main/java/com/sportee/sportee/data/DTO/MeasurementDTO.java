@@ -20,6 +20,6 @@ public class MeasurementDTO {
         this.value = measurement.getValue();
         this.unit = measurement.getMeasurementType().getUnit();
         this.measurementType = measurement.getMeasurementType().getName();
-        this.user = measurement.getUser().getFirstName()+" "+measurement.getUser().getLastName();
+        this.user = measurement.getUser().getFirstName() + " " + measurement.getUser().getLastName();
     }
 }

@@ -10,7 +10,7 @@ public class RoomDTO {
     private int capacity;
 
     public RoomDTO(Room room) {
-        this.id=room.getId();
+        this.id = room.getId();
         this.name = room.getName();
         this.capacity = room.getCapacity();
     }

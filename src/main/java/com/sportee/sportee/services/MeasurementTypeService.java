@@ -20,7 +20,6 @@ public class MeasurementTypeService implements IMeasurementTypeService {
         this.measurementTypeRepository = measurementTypeRepository;
     }
 
-
     @Override
     public List<MeasurementTypeDTO> getAllMeasurementTypes() {
         List<MeasurementTypeDTO> measurementTypes = new ArrayList<MeasurementTypeDTO>();
@@ -55,8 +54,6 @@ public class MeasurementTypeService implements IMeasurementTypeService {
         });
 
     }
-
-
 
 
     @Override

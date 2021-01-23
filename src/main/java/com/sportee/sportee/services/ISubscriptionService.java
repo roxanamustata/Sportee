@@ -1,8 +1,5 @@
 package com.sportee.sportee.services;
 
-import com.sportee.sportee.data.DAO.MeasurementType;
-import com.sportee.sportee.data.DAO.SubscriptionType;
-import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.SubscriptionDTO;
 
 import java.sql.Date;

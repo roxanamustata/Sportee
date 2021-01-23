@@ -1,11 +1,9 @@
 package com.sportee.sportee.data.DTO;
 
-import com.sportee.sportee.data.DAO.GymClass;
 import lombok.Getter;
 
-import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
+
 @Getter
 public class HourDTO {
 
@@ -18,9 +16,9 @@ public class HourDTO {
         Arrays.fill(classes, new GymClassDTO());
     }
 
-    public void addGymClass (GymClassDTO gymClass){
-       int day = gymClass.getDate().getDayOfWeek().getValue();
-       classes[day-1] =gymClass;
+    public void addGymClass(GymClassDTO gymClass) {
+        int day = gymClass.getDate().getDayOfWeek().getValue();
+        classes[day - 1] = gymClass;
     }
 
 }

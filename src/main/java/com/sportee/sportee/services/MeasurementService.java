@@ -48,8 +48,6 @@ public class MeasurementService implements IMeasurementService {
                     .measurementType(t).user(user.get()).build();
 
             measurementRepository.save(m);
-
-
         });
     }
 
@@ -62,12 +60,9 @@ public class MeasurementService implements IMeasurementService {
     public void editMeasurement(Integer id, Optional<Date> date, Optional<Integer> value, Optional<MeasurementType> measurementType, Optional<User> user) {
         Optional<Measurement> measurement = measurementRepository.findById(id);
 
-
         measurement.ifPresent(m -> {
             date.ifPresent(d -> m.setDate(d));
             value.ifPresent(v -> m.setValue(v));
-//            measurementType.ifPresent(mt -> m.setMeasurementType(mt));
-//            sporteeMember.ifPresent(s -> m.setSporteeMember(s));
 
             measurementRepository.save(m);
         });

@@ -11,7 +11,7 @@ public class GymClassTypeDTO {
     private int duration;
 
     public GymClassTypeDTO(GymClassType gymClassType) {
-        this.id=gymClassType.getId();
+        this.id = gymClassType.getId();
         this.name = gymClassType.getName();
         this.duration = gymClassType.getDuration();
     }

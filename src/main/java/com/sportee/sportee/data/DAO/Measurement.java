@@ -21,16 +21,16 @@ public class Measurement {
     private int value;
 
     @ManyToOne
-    @JoinColumn(name="measurement_type_id")
+    @JoinColumn(name = "measurement_type_id")
     private MeasurementType measurementType;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Builder(toBuilder=true)
+    @Builder(toBuilder = true)
     public Measurement(int id, Date date, int value, MeasurementType measurementType, User user) {
-        this.id=id;
+        this.id = id;
         this.date = date;
         this.value = value;
         this.measurementType = measurementType;

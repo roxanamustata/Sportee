@@ -16,14 +16,14 @@ public class GymClassType {
     @EqualsAndHashCode.Include
     @Id
     private int id;
-    private  String name;
+    private String name;
     private int duration;
 
 
     @OneToMany(mappedBy = "gymClassType")
-    private List<GymClass>gymClasses;
+    private List<GymClass> gymClasses;
 
-    @Builder(toBuilder=true)
+    @Builder(toBuilder = true)
     public GymClassType(String name, int duration) {
         this.name = name;
         this.duration = duration;

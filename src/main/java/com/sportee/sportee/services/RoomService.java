@@ -16,7 +16,6 @@ public class RoomService implements IRoomService {
 
     @Autowired
     public RoomService(RoomRepository roomRepository) {
-
         this.roomRepository = roomRepository;
     }
 
@@ -32,8 +31,6 @@ public class RoomService implements IRoomService {
     public void insertRoom(String name, int capacity) {
         Room r = Room.builder().name(name).capacity(capacity).build();
         roomRepository.save(r);
-
-
     }
 
     @Override

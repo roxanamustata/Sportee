@@ -1,9 +1,7 @@
 package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DAO.GymClassType;
-import com.sportee.sportee.data.DAO.MeasurementType;
 import com.sportee.sportee.data.DTO.GymClassTypeDTO;
-import com.sportee.sportee.data.DTO.MeasurementTypeDTO;
 import com.sportee.sportee.data.repositories.GymClassTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

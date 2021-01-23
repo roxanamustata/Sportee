@@ -21,14 +21,14 @@ public class Subscription {
     private boolean valid;
 
     @ManyToOne
-    @JoinColumn(name="subscription_type_id")
+    @JoinColumn(name = "subscription_type_id")
     private SubscriptionType subscriptionType;
 
     @ManyToOne
-    @JoinColumn(name="user_id")
+    @JoinColumn(name = "user_id")
     private User user;
 
-    @Builder(toBuilder=true)
+    @Builder(toBuilder = true)
     public Subscription(int id, Date date, boolean valid, SubscriptionType subscriptionType, User user) {
         this.id = id;
         this.date = date;

@@ -19,7 +19,7 @@ public class GymClassBookingDTO {
         this.id = gymClassBooking.getId();
         this.gymClassDate = gymClassBooking.getGymClass().getDate();
         this.gymClassType = gymClassBooking.getGymClass().getGymClassType().getName();
-        this.user=gymClassBooking.getUser().getFirstName()+" "+gymClassBooking.getUser().getLastName();
+        this.user = gymClassBooking.getUser().getFirstName() + " " + gymClassBooking.getUser().getLastName();
 
 
     }

@@ -3,7 +3,6 @@ package com.sportee.sportee.data.DTO;
 import com.sportee.sportee.data.DAO.GymClass;
 import lombok.Getter;
 
-import java.sql.Date;
 import java.time.LocalDateTime;
 
 @Getter

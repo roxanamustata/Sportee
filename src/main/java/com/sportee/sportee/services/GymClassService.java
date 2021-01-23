@@ -2,7 +2,6 @@ package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DAO.GymClass;
 import com.sportee.sportee.data.DAO.GymClassType;
-import com.sportee.sportee.data.DAO.Measurement;
 import com.sportee.sportee.data.DAO.Room;
 import com.sportee.sportee.data.DTO.GymClassDTO;
 import com.sportee.sportee.data.DTO.HourDTO;
@@ -12,12 +11,8 @@ import com.sportee.sportee.data.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.DayOfWeek;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 
@@ -43,8 +38,6 @@ public class GymClassService implements IGymClassService {
         all.forEach(g -> gymClasses.add(new GymClassDTO(g)));
         return gymClasses;
     }
-
-//
 
 
     @Override

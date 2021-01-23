@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface IGymClassService {
+
     List<GymClassDTO> getAllGymClasses();
 
     void insertGymClass(LocalDateTime date, int gymClassTypeId, int roomId);

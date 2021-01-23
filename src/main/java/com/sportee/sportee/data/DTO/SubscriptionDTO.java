@@ -14,7 +14,7 @@ public class SubscriptionDTO {
     private String user;
 
     public SubscriptionDTO(Subscription subscription) {
-        this.id=subscription.getId();
+        this.id = subscription.getId();
         this.date = subscription.getDate();
         this.valid = subscription.isValid();
         this.subscriptionType = subscription.getSubscriptionType().getName();

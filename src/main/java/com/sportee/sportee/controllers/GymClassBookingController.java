@@ -27,7 +27,7 @@ public class GymClassBookingController {
         this.gymClassService = gymClassService;
         this.userService = userService;
         this.gymClassBookingService = gymClassBookingService;
-}
+    }
 
     @GetMapping("/")
     public ModelAndView showAllGymClassBookings() {
@@ -49,9 +49,9 @@ public class GymClassBookingController {
     }
 
     @RequestMapping(value = "/insertGymClassBooking", method = RequestMethod.POST)
-        public String insertGymClassBooking(Integer gymClass, Integer user) {
+    public String insertGymClassBooking(Integer gymClass, Integer user) {
 
-       gymClassBookingService.insertGymClassBooking(gymClass, user);
+        gymClassBookingService.insertGymClassBooking(gymClass, user);
         return "redirect:/gymClassBookings";
     }
 
@@ -61,10 +61,10 @@ public class GymClassBookingController {
         return "redirect:/gymClassBookings";
 
     }
+
     @RequestMapping(value = "/{gymClass}/{remoteUserName}/bookGymClass", method = RequestMethod.POST)
     public String bookGymClass(@PathVariable("gymClass") Integer gymClass, @PathVariable("remoteUserName") String remoteUserName) {
 
-        System.out.println("controller");
         gymClassBookingService.bookGymClassBooking(gymClass, remoteUserName);
         return "redirect:/schedule";
     }

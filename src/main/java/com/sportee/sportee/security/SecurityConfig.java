@@ -22,24 +22,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-//        http
-//                .authorizeRequests()
-//                    .antMatchers("/","/contact/**","/schedule/**","/trainers/**",
-//                            "/js/**","/scss/**", "/fonts/**","/images/**","/css/**","/gym/**",
-//                            "/home/**","/members/**", "/measurementTypes/**", "/measurements/**",
-//                            "/membership/**", "/timetable/**", "/gymClassTypes/**",
-//                            "/subscriptionTypes/**", "/subscriptions/**", "/gymClasses/**",
-//                            "/rooms/**","/users/**" ).permitAll()
-//                    .anyRequest().authenticated()
-//                    .and()
-//                .formLogin()
-//                    .loginPage("/login")
-//                    .permitAll()
-//                    .and()
-//                .logout()
-//                    .permitAll()
-//                    .and()
-//                .httpBasic();
+
         http
                 .authorizeRequests()
                 .antMatchers("/home.html", "/contact/**","/schedule/**","/trainers/**", "/login/**", "/users/insert" ).permitAll()
@@ -62,8 +45,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .and()
 //                .rememberMe().tokenValiditySeconds(2592000).key("mySecret!").rememberMeParameter("checkRememberMe");
 
-
-
     }
 
 
@@ -79,19 +60,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             return new BCryptPasswordEncoder();
         }
 
-
-
-
-
-
-
-////    hardcodat ... ar putea fi folosit pentru admin
-//    @Bean
-//    @Override
-//    protected UserDetailsService userDetailsService() {
-//        UserDetails user = User.withUsername("admin").password("{noop}pass").roles("ADMIN").build();
-//        return new InMemoryUserDetailsManager(user);
-//    }
 
 
 }
