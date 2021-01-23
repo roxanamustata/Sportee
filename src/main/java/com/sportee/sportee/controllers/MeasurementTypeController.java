@@ -54,9 +54,9 @@ public class MeasurementTypeController {
     }
 
     @PostMapping("/insertMeasurementType")
-    public ModelAndView insertMeasurementType(String name, String unit) {
+    public String insertMeasurementType(String name, String unit) {
         measurementTypeService.insertMeasurementType(name, unit);
-        return showAllMeasurementTypes();
+        return "redirect:/measurements/insertMeasurement";
     }
 
 

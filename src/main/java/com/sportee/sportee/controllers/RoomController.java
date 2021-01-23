@@ -20,25 +20,25 @@ public class RoomController {
         this.roomService = roomService ;
     }
 
-    @GetMapping({"/rooms/showAll"})
+    @GetMapping("/")
     public ModelAndView showAllRooms() {
         ModelAndView mv = new ModelAndView("rooms");
         mv.addObject("rooms", roomService.getAllRooms());
         return mv;
     }
-    @GetMapping("rooms/insertRoom")
+    @GetMapping("/insertRoom")
     public String insertRoom() {
         return "insertRoom";
 
     }
 
-    @PostMapping("/rooms/insertRoom")
-    public ModelAndView insertRoom(String name, Integer capacity) {
+    @PostMapping("/insertRoom")
+    public String insertRoom(String name, Integer capacity) {
         roomService.insertRoom(name, capacity);
-        return showAllRooms();
+        return "redirect:/gymClasses/insertGymClass";
     }
 
-    @RequestMapping("/rooms/{id}/delete")
+    @RequestMapping("/{id}/delete")
     public ModelAndView deleteRooms(@PathVariable Integer id) {
         roomService.deleteRoom(id);
         return showAllRooms();

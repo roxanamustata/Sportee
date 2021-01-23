@@ -44,11 +44,12 @@ public class GymClassBookingService implements IGymClassBookingService {
 
         gymClass.ifPresent(g -> {
 
-            user.ifPresent(u -> { GymClassBooking gb = GymClassBooking.builder()
-                    .gymClass(g).user(u).build();
+            user.ifPresent(u -> {
+                GymClassBooking gb = GymClassBooking.builder()
+                        .gymClass(g).user(u).build();
 
-                gymClassBookingRepository.save(gb);});
-
+                gymClassBookingRepository.save(gb);
+            });
 
 
         });
@@ -56,13 +57,46 @@ public class GymClassBookingService implements IGymClassBookingService {
 
     }
 
+//    @Override
+//    public void bookGymClass(Integer gymClassId, Integer userId) {
+//
+//        Optional<GymClass> gymClass= gymClassRepository.findById(gymClassId);
+//        Optional<User> user = userRepository.findById(userId);
+//        GymClassBooking gb = GymClassBooking.builder()
+//                .gymClass(gymClass).user(user).build();
+//
+//        gymClassBookingRepository.save(gb);
+//
+//
+//    }
+
+
     @Override
     public void deleteGymClassBooking(Integer id) {
-
+        gymClassBookingRepository.deleteById(id);
     }
 
     @Override
     public void editGymClassBooking(Integer id, Optional<Boolean> value, Optional<GymClass> gymClass, Optional<User> user) {
+
+    }
+
+    @Override
+    public void bookGymClassBooking(Integer gymClassId, String remoteUserName) {
+        Optional<GymClass> gymClass = gymClassRepository.findById(gymClassId);
+        System.out.println("gasit clasa in servicu");
+        User user = userRepository.findByUserName(remoteUserName);
+        System.out.println("gasit user in serviciu");
+        gymClass.ifPresent(g -> {
+
+
+                GymClassBooking gb = GymClassBooking.builder()
+                        .gymClass(g).user(user).build();
+
+                gymClassBookingRepository.save(gb);
+            });
+
+
 
     }
 }

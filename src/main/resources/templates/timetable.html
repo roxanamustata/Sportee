@@ -103,7 +103,13 @@
                             <td th:each="g: ${m.classes}" th:id="${g.room}">
 
                                 <span th:text="${g.gymClassType}"></span><br>
-                                <span th:text="${g.room}"></span>
+                                <span th:text="${g.room}"></span><br>
+                            <span th:if="${g.gymClassType != null}" >
+                                <form th:if="${#httpServletRequest.remoteUser != null}" th:action="@{/gymClassBookings/{gymClass}/{remoteUserName}/bookGymClass(gymClass=${g.id},remoteUserName=${#httpServletRequest.remoteUser})}" method="POST">
+                                <button type="submit" class="btn">Book</button>
+                            </form>
+
+                                 </span>
                             </td>
                         </tr>
                         <!--                        <tr class="text-center">-->

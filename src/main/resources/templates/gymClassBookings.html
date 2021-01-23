@@ -84,17 +84,17 @@
 <section class="ftco-section contact-section">
     <div class="container">
         <table border="2" width="70%" cellpadding="2">
-            <tr><th>No</th><th>Date&Hour</th><th>Class</th><th>User</th><th>Edit</th><th>Delete</th></tr>
+            <tr><th>No</th><th>Date&Hour</th><th>Class</th><th>User</th><th>Cancel</th></tr>
             <tr th:each="m: ${gymClassBookings}">
                 <td th:text="${m.id}"> </td>
                 <td th:text="${m.gymClassDate}"> </td>
                 <td th:text="${m.gymClassType}"> </td>
                 <td th:text="${m.user}">  </td>
-                <td> <a th:href="@{/gymClassBookings/{id}/editGymClassBooking(id=${m.id})}">
-                    Edit</a>
-                </td>
+<!--                <td> <a th:href="@{/gymClassBookings/{id}/editGymClassBooking(id=${m.id})}">-->
+<!--                    Edit</a>-->
+<!--                </td>-->
                 <td> <a th:href="@{/gymClassBookings/{id}/delete(id=${m.id})}">
-                    Delete</a>
+                    x</a>
                 </td>
             </tr>
         </table>

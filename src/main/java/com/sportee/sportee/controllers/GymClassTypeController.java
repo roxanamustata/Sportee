@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 @PreAuthorize("hasRole('ROLE_admin')")
 @Controller
+@RequestMapping("/gymClassTypes")
 public class GymClassTypeController {
 
     private GymClassTypeService gymClassTypeService;
@@ -20,26 +21,26 @@ public class GymClassTypeController {
         this.gymClassTypeService = gymClassTypeService;
     }
 
-    @GetMapping({"/gymClassTypes/showAll"})
+    @GetMapping("/")
     public ModelAndView showAllGymClassTypes() {
         ModelAndView mv = new ModelAndView("gymClassTypes");
         mv.addObject("gymClassTypes", gymClassTypeService.getAllGymClassTypes());
         return mv;
     }
 
-    @GetMapping("gymClassTypes/insertGymClassType")
+    @GetMapping("/insertGymClassType")
     public String insertGymClassType() {
         return "insertGymClassType";
 
     }
 
-    @PostMapping("/gymClassTypes/insertGymClassType")
-    public ModelAndView insertGymClassType(String name, int duration ) {
+    @PostMapping("/insertGymClassType")
+    public String insertGymClassType(String name, int duration ) {
        gymClassTypeService.insertGymClassType(name, duration);
-        return showAllGymClassTypes();
+        return "redirect:/gymClasses/insertGymClass";
     }
 
-    @RequestMapping("/gymClassTypes/{id}/delete")
+    @RequestMapping("/{id}/delete")
     public ModelAndView deleteGymClassTypes(@PathVariable Integer id) {
         gymClassTypeService.deleteGymClassType(id);
         return showAllGymClassTypes();

@@ -22,5 +22,9 @@ public interface IGymClassBookingService {
 
     void deleteGymClassBooking(Integer id);
 
+//    void bookGymClass(GymClass gymClass, User user);
+
     void editGymClassBooking(Integer id, Optional<Boolean> value, Optional<GymClass> gymClass, Optional<User> user);
+
+    void bookGymClassBooking(Integer gymClass, String remoteUserName);
 }
