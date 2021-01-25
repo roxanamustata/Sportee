@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<p>
+    Insert
+</p>
+<form th:action="@{/subscriptionTypes/insertSubscriptionType}" method="POST">
+
+
+
+
+    <p>Subscription type: <input type="text" name="name"/></p>
+    <p>Duration: <input type="number" name="duration"/></p>
+
+    <p>Price: <input type="text" name="price"/></p>
+
+
+    <p><input type="submit" name="Submit"/></p>
+</form>
+</body>
+</html>

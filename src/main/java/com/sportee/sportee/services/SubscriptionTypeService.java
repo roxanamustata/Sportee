@@ -1,5 +1,6 @@
 package com.sportee.sportee.services;
 
+import com.sportee.sportee.data.DAO.MeasurementType;
 import com.sportee.sportee.data.DAO.SubscriptionType;
 import com.sportee.sportee.data.DTO.SubscriptionTypeDTO;
 import com.sportee.sportee.data.repositories.SubscriptionTypeRepository;
@@ -25,4 +26,12 @@ public class SubscriptionTypeService implements ISubscriptionTypeService {
         all.forEach(s -> subscriptionTypeDTOS.add(new SubscriptionTypeDTO(s)));
         return subscriptionTypeDTOS;
     }
+
+    @Override
+    public void insertSubscriptionType(String name, int duration, int price) {
+
+            SubscriptionType m = SubscriptionType.builder().name(name).duration(duration).price(price).build();
+            subscriptionTypeRepository.save(m);
+        }
+
 }

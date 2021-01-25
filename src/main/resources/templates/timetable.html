@@ -106,7 +106,7 @@
                                 <span th:text="${g.room}"></span><br>
                             <span th:if="${g.gymClassType != null}" >
                                 <form th:if="${#httpServletRequest.remoteUser != null}" th:action="@{/gymClassBookings/{gymClass}/{remoteUserName}/bookGymClass(gymClass=${g.id},remoteUserName=${#httpServletRequest.remoteUser})}" method="POST">
-                                <button type="submit" class="btn">Book</button>
+                                <button type="submit" class="btn" >Book</button>
                             </form>
 
                                  </span>

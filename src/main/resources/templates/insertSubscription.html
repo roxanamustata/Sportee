@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:tiles="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
 <body>
 <p>
     Insert
@@ -26,7 +26,7 @@
                     th:text="${subscriptionType.name}" ></option>
 
         </select>
-
+        <a sec:authorize="hasRole('ROLE_admin')" href="/subscriptionTypes/insertSubscriptionType"> Add </a> new subscription type
     </p>
 
     <p>Valid: <input type="text" name="valid"/></p>

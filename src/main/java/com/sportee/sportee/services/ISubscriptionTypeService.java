@@ -8,4 +8,5 @@ public interface ISubscriptionTypeService {
 
     List<SubscriptionTypeDTO> getAllSubscriptionType();
 
+    void insertSubscriptionType(String name, int duration, int price);
 }
