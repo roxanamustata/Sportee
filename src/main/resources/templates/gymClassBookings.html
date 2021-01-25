@@ -57,6 +57,15 @@
                 <li sec:authorize="hasAnyRole('ROLE_trainer', 'ROLE_admin')" class="nav-item"><a href="/gymClassBookings"
                                                                                                  class="nav-link pl-0">Bookings</a>
                 </li>
+                <li sec:authorize="hasRole('ROLE_client')" class="nav-item"><a href="/mySchedule"
+                                                                               class="nav-link pl-0">My Schedule</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_client')" class="nav-item"><a href="/myProgress"
+                                                                               class="nav-link pl-0">My Progress</a>
+                </li>
+                <li sec:authorize="hasRole('ROLE_client')" class="nav-item"><a href="/myAccount"
+                                                                               class="nav-link pl-0">My Account</a>
+                </li>
 
             </ul>
             <div th:if="${#httpServletRequest.remoteUser != null}">

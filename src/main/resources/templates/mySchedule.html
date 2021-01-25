@@ -32,7 +32,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container pl-0">
         <a class="navbar-brand py-2 px-4" href="/home">Sportee</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
@@ -41,9 +42,8 @@
                 <li class="nav-item"><a href="/gym" class="nav-link pl-0">Classes</a></li>
                 <li class="nav-item"><a href="/trainers" class="nav-link pl-0">Trainers</a></li>
                 <li class="nav-item"><a href="/schedule" class="nav-link pl-0">Schedule</a></li>
-                <li class="nav-item"><a href="/contact" class="nav-link pl-0">Contact</a></li>
+                <li class="nav-item active"><a href="/contact" class="nav-link pl-0">Contact</a></li>
                 <li class="nav-item"><a href="/login" class="nav-link pl-0">Membership</a></li>
-
                 <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/users"
                                                                               class="nav-link pl-0">Users</a></li>
                 <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/subscriptions"
@@ -75,44 +75,22 @@
         </div>
     </div>
 </nav>
+<!-- END nav -->
 
-
-<section class="hero-wrap" >
+<section class="hero-wrap js-fullheight" style="background-image: url('images/bg_2.jpg');">
     <div class="overlay"></div>
     <div class="container">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
             <div class="col-md-9 ftco-animate text-center">
-                <h6 class="mb-3 bread">Users</h6>
-<!--                            <p class="breadcrumbs"><span class="mr-2"><a href="home.html">Home</a></span> <span>Contact</span></p>-->
+                <h1 class="mb-3 bread">My Schedule</h1>
+                <p>Under construction</p>
+
             </div>
         </div>
     </div>
 </section>
 
-<section class="ftco-section contact-section">
-    <div class="container">
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name...">
-        <table id="usersTable" border="2" width="70%" cellpadding="2">
-            <tr><th>No</th><th>Full Name</th><th>Birth Date</th><th>Height</th><th>Edit</th><th>Delete</th></tr>
-            <tr th:each="m: ${users}">
-                <td th:text="${m.id}"> </td>
-                <td th:text="${m.firstName}+' '+${m.lastName}"> </td>
-                <td th:text="${m.birthDate}"> </td>
-                <td th:text="${m.height}">  </td>
-                <td> <a th:href="@{/users/{id}/edit(id=${m.id})}">
-                    Edit</a>
-                </td>
-                <td> <a th:href="@{/users/{id}/delete(id=${m.id})}">
-                    Delete</a>
-                </td>
-            </tr>
-        </table>
-        </p>
-        <p>
-            <a href="/users/insert"> Add </a> new user
-        </p>
-    </div>
-</section>
+
 
 <footer class="ftco-footer ftco-section img">
 
@@ -153,32 +131,6 @@
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
 <script src="js/google-map.js"></script>
 <script src="js/main.js"></script>
-<script>
-function myFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("usersTable");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
-    }
-  }
-}
-</script>
 
 </body>
 </html>
-
-
-

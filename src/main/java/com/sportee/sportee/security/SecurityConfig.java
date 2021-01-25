@@ -33,6 +33,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/gymClasses/**","/rooms/**","/users/**").hasRole("admin")
                 .antMatchers("/measurements/**").hasRole("trainer")
                 .antMatchers( "/gymClassBookings/**").hasAnyRole("trainer", "admin")
+                .antMatchers( "/myTimetable/**", "/myAccount/**", "/myProgress/**").hasRole("client")
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")
