@@ -2,7 +2,7 @@ package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.UserDTO;
-import com.sportee.sportee.data.repositories.UserRepository;
+import com.sportee.sportee.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

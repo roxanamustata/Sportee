@@ -2,7 +2,7 @@ package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DAO.Room;
 import com.sportee.sportee.data.DTO.RoomDTO;
-import com.sportee.sportee.data.repositories.RoomRepository;
+import com.sportee.sportee.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

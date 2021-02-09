@@ -1,7 +1,6 @@
 package com.sportee.sportee.controllers;
 
 import com.sportee.sportee.data.DAO.MeasurementType;
-import com.sportee.sportee.data.repositories.MeasurementTypeRepository;
 import com.sportee.sportee.services.MeasurementTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -10,7 +9,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.sql.Date;
 import java.util.Optional;
 @PreAuthorize("hasRole('ROLE_trainer')")
 @Controller

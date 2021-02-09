@@ -1,4 +1,4 @@
-package com.sportee.sportee.data.repositories;
+package com.sportee.sportee.repositories;
 
 import com.sportee.sportee.data.DAO.Measurement;
 import org.springframework.data.repository.CrudRepository;

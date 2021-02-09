@@ -1,7 +1,7 @@
 package com.sportee.sportee.security;
 
 import com.sportee.sportee.data.DAO.User;
-import com.sportee.sportee.data.repositories.UserRepository;
+import com.sportee.sportee.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

@@ -1,9 +1,8 @@
 package com.sportee.sportee.services;
 
-import com.sportee.sportee.data.DAO.MeasurementType;
 import com.sportee.sportee.data.DAO.SubscriptionType;
 import com.sportee.sportee.data.DTO.SubscriptionTypeDTO;
-import com.sportee.sportee.data.repositories.SubscriptionTypeRepository;
+import com.sportee.sportee.repositories.SubscriptionTypeRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

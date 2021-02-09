@@ -4,9 +4,9 @@ import com.sportee.sportee.data.DAO.GymClass;
 import com.sportee.sportee.data.DAO.GymClassBooking;
 import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.GymClassBookingDTO;
-import com.sportee.sportee.data.repositories.GymClassBookingRepository;
-import com.sportee.sportee.data.repositories.GymClassRepository;
-import com.sportee.sportee.data.repositories.UserRepository;
+import com.sportee.sportee.repositories.GymClassBookingRepository;
+import com.sportee.sportee.repositories.GymClassRepository;
+import com.sportee.sportee.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

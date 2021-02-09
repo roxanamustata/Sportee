@@ -29,10 +29,12 @@ public class GymClassBooking {
     private User user;
 
 
-    @Builder(toBuilder=true)
+    @Builder(toBuilder = true)
     public GymClassBooking(int id, GymClass gymClass, User user) {
         this.id = id;
         this.gymClass = gymClass;
         this.user = user;
     }
+
+
 }

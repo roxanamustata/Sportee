@@ -5,9 +5,9 @@ import com.sportee.sportee.data.DAO.GymClassType;
 import com.sportee.sportee.data.DAO.Room;
 import com.sportee.sportee.data.DTO.GymClassDTO;
 import com.sportee.sportee.data.DTO.HourDTO;
-import com.sportee.sportee.data.repositories.GymClassRepository;
-import com.sportee.sportee.data.repositories.GymClassTypeRepository;
-import com.sportee.sportee.data.repositories.RoomRepository;
+import com.sportee.sportee.repositories.GymClassRepository;
+import com.sportee.sportee.repositories.GymClassTypeRepository;
+import com.sportee.sportee.repositories.RoomRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
