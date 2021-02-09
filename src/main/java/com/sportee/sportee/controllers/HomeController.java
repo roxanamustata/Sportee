@@ -1,100 +1,56 @@
 package com.sportee.sportee.controllers;
 
 
-import com.sportee.sportee.services.*;
+import com.sportee.sportee.services.GymClassService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
+@RequestMapping("/")
 public class HomeController {
 
 
     private GymClassService gymClassService;
-    private MeasurementService measurementService;
-    private UserService userService;
-    private SubscriptionService subscriptionService;
-    private GymClassBookingService gymClassBookingService;
 
     @Autowired
-    public HomeController(GymClassService gymClassService, MeasurementService measurementService, UserService userService, SubscriptionService subscriptionService, GymClassBookingService gymClassBookingService) {
+    public HomeController(GymClassService gymClassService) {
         this.gymClassService = gymClassService;
-        this.measurementService = measurementService;
-        this.userService = userService;
-        this.subscriptionService = subscriptionService;
-        this.gymClassBookingService = gymClassBookingService;
     }
 
-    @GetMapping({"/", "/home"})
+    @RequestMapping(value = {"", "home"}, method = RequestMethod.GET)
     public String home() {
         return "home";
     }
 
-
-
-    @GetMapping({"/gym"})
+    @RequestMapping(value = "gym", method = RequestMethod.GET)
     public String gym() {
         return "gym";
     }
 
-    @GetMapping({"/trainers"})
+    @RequestMapping(value = "trainers", method = RequestMethod.GET)
     public String trainers() {
         return "trainers";
     }
 
-    @GetMapping({"/schedule"})
+    @RequestMapping(value = "schedule", method = RequestMethod.GET)
     public ModelAndView showTimetable() {
         ModelAndView mv = new ModelAndView("timetable");
         mv.addObject("timetable", gymClassService.getTimetable());
         return mv;
     }
 
-    @GetMapping({"/contact"})
+    @RequestMapping(value = "contact", method = RequestMethod.GET)
     public String contact() {
         return "contact";
     }
 
 
-    @GetMapping("/login")
+    @RequestMapping(value = "login", method = RequestMethod.GET)
     public String login() {
         return "login";
-    }
-
-
-    @GetMapping("/gymClasses")
-    public ModelAndView gymClasses() {
-        ModelAndView mv = new ModelAndView("gymClasses");
-        mv.addObject("gymClasses", gymClassService.getAllGymClasses());
-        return mv;
-    }
-
-
-    @GetMapping("/measurements")
-    public ModelAndView measurements() {
-        ModelAndView mv = new ModelAndView("measurements");
-        mv.addObject("measurements", measurementService.getAllMeasurements());
-        return mv;
-    }
-
-    @GetMapping("/users")
-    public ModelAndView users() {
-        ModelAndView mv = new ModelAndView("users");
-        mv.addObject("users", userService.getAllUsers());
-        return mv;
-    }
-
-    @GetMapping("/subscriptions")
-    public ModelAndView subscriptions() {
-        ModelAndView mv = new ModelAndView("subscriptions");
-        mv.addObject("subscriptions", subscriptionService.getAllSubscriptions());
-        return mv;
-    }
-    @GetMapping("/gymClassBookings")
-    public ModelAndView gymClassBookings() {
-        ModelAndView mv = new ModelAndView("gymClassBookings");
-        mv.addObject("gymClassBookings", gymClassBookingService.getAllGymClassBookings());
-        return mv;
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 @PreAuthorize("hasRole('ROLE_admin')")
 @Controller
@@ -18,7 +19,7 @@ public class SubscriptionTypeController {
     public SubscriptionTypeController(SubscriptionTypeService subscriptionTypeService) {
         this.subscriptionTypeService = subscriptionTypeService;
     }
-    @GetMapping({"/showAll"})
+    @RequestMapping(method= RequestMethod.GET)
     public ModelAndView showAllMembers() {
         ModelAndView mv = new ModelAndView("subscriptionTypes");
         mv.addObject("subscriptionTypes", subscriptionTypeService.getAllSubscriptionType());

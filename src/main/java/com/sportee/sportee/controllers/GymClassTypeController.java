@@ -4,10 +4,7 @@ import com.sportee.sportee.services.GymClassTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 @PreAuthorize("hasRole('ROLE_admin')")
 @Controller
@@ -21,7 +18,7 @@ public class GymClassTypeController {
         this.gymClassTypeService = gymClassTypeService;
     }
 
-    @GetMapping("/")
+    @RequestMapping(method= RequestMethod.GET)
     public ModelAndView showAllGymClassTypes() {
         ModelAndView mv = new ModelAndView("gymClassTypes");
         mv.addObject("gymClassTypes", gymClassTypeService.getAllGymClassTypes());

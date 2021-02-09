@@ -29,7 +29,7 @@ public class GymClassBookingController {
         this.gymClassBookingService = gymClassBookingService;
     }
 
-    @GetMapping("/")
+    @RequestMapping(method= RequestMethod.GET)
     public ModelAndView showAllGymClassBookings() {
         ModelAndView mv = new ModelAndView("gymClassBookings");
         mv.addObject("gymClassBookings", gymClassBookingService.getAllGymClassBookings());

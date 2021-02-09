@@ -30,7 +30,7 @@ public class SubscriptionController {
         this.subscriptionTypeService = subscriptionTypeService;
     }
 
-    @GetMapping("/")
+    @RequestMapping(method= RequestMethod.GET)
     public ModelAndView showAllSubscriptions() {
         ModelAndView mv = new ModelAndView("subscriptions");
         mv.addObject("subscriptions", subscriptionService.getAllSubscriptions());

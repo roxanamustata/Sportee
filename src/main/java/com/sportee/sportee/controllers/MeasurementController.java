@@ -1,13 +1,16 @@
 package com.sportee.sportee.controllers;
 
+import com.sportee.sportee.data.DAO.Measurement;
 import com.sportee.sportee.data.DAO.MeasurementType;
 import com.sportee.sportee.data.DAO.User;
+import com.sportee.sportee.data.DTO.MeasurementDTO;
 import com.sportee.sportee.services.MeasurementService;
 import com.sportee.sportee.services.MeasurementTypeService;
 import com.sportee.sportee.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -29,7 +32,7 @@ public class MeasurementController {
         this.measurementTypeService = measurementTypeService;
     }
 
-    @GetMapping("/")
+    @RequestMapping(method=RequestMethod.GET)
     public ModelAndView showAllMeasurements() {
         ModelAndView mv = new ModelAndView("measurements");
         mv.addObject("measurements", measurementService.getAllMeasurements());

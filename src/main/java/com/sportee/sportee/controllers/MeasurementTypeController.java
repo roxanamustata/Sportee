@@ -21,7 +21,7 @@ public class MeasurementTypeController {
         this.measurementTypeService = measurementTypeService;
     }
 
-    @GetMapping({"/showAll"})
+    @RequestMapping(method= RequestMethod.GET)
     public ModelAndView showAllMeasurementTypes() {
         ModelAndView mv = new ModelAndView("measurementTypes");
         mv.addObject("measurementTypes", measurementTypeService.getAllMeasurementTypes());
