@@ -4,9 +4,9 @@ import com.sportee.sportee.data.DAO.Measurement;
 import com.sportee.sportee.data.DAO.MeasurementType;
 import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.MeasurementDTO;
-import com.sportee.sportee.data.repositories.MeasurementRepository;
-import com.sportee.sportee.data.repositories.MeasurementTypeRepository;
-import com.sportee.sportee.data.repositories.UserRepository;
+import com.sportee.sportee.repositories.MeasurementRepository;
+import com.sportee.sportee.repositories.MeasurementTypeRepository;
+import com.sportee.sportee.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
