@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:tiles="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Sportee</title>
     <meta charset="utf-8">
@@ -69,7 +69,7 @@
             </ul>
             <div th:if="${#httpServletRequest.remoteUser != null}">
                 <form th:action="@{/logout}" method="post"> Hello [[${#httpServletRequest.remoteUser}]]!
-                    <input type="submit" value="Sign Out"/>
+                    <input type="submit" value="Sign Out" class="btn"/>
                 </form>
             </div>
         </div>
@@ -92,18 +92,29 @@
 <section class="ftco-section contact-section">
     <div class="container">
         <table border="2" width="70%" cellpadding="2">
-            <tr><th>No</th><th>Date&Hour</th><th>Class</th><th>Room</th><th>Edit</th><th>Delete</th></tr>
-            <tr th:each="m: ${gymClasses}">
-                <td th:text="${m.id}"> </td>
-                <td th:text="${m.date}"> </td>
-                <td th:text="${m.gymClassType}"> </td>
-                <td th:text="${m.room}">  </td>
-                <td> <a th:href="@{/gymClasses/{id}/editGymClass(id=${m.id})}">
+            <tr>
+                <th>No</th>
+                <th>Date&Hour</th>
+                <th>Class</th>
+                <th>Room</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+            <tr th:each="gymClass: ${gymClasses}">
+                <td th:text="${gymClass.id}"></td>
+                <td th:text="${gymClass.date}"></td>
+                <td th:text="${gymClass.gymClassType}"></td>
+                <td th:text="${gymClass.room}"></td>
+                <td><a th:href="@{/gymClasses/editGymClass/{id}(id=${gymClass.id})}">
                     Edit</a>
                 </td>
-                <td> <a th:href="@{/gymClasses/{id}/delete(id=${m.id})}">
-                    Delete</a>
+                <td>
+                    <a th:href="@{/gymClasses/{id}/delete(id=${gymClass.id})}"
+                       onclick="return confirm('Are you sure you want to delete this item?');">Delete</a>
+
                 </td>
+
+
             </tr>
         </table>
         </p>
@@ -112,6 +123,7 @@
         </p>
     </div>
 </section>
+
 
 <footer class="ftco-footer ftco-section img">
 

@@ -46,5 +46,4 @@ public class SporteeApplication implements WebMvcConfigurer {
 		};
 	}
 
-
 }

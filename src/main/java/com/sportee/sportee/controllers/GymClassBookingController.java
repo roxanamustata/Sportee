@@ -1,18 +1,16 @@
 package com.sportee.sportee.controllers;
 
-import com.sportee.sportee.data.DAO.GymClass;
-import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.services.GymClassBookingService;
 import com.sportee.sportee.services.GymClassService;
 import com.sportee.sportee.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
-import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-
-import java.security.Principal;
 
 @PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_trainer')")
 @Controller
@@ -61,6 +59,7 @@ public class GymClassBookingController {
         return "redirect:/gymClassBookings";
 
     }
+
 
     @RequestMapping(value = "/{gymClass}/{remoteUserName}/bookGymClass", method = RequestMethod.POST)
     public String bookGymClass(@PathVariable("gymClass") Integer gymClass, @PathVariable("remoteUserName") String remoteUserName) {

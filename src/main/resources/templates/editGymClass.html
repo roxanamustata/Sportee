@@ -1,21 +1,63 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sportee</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
 <body>
-<p>
-    Edit
-</p>
-
-<form th:action="@{editGymClass(gymClass.id)}" method="POST">
-
-        <p><span>Date and hour: <input type="date" name="date"  /></span>
-        <span><input type="time" name="time" min="09:00" max="20:01" /></span>
-    </p>
-
-    <p>Gym class: <input type="number" name="gymClassType"/></p>
-    <p>Room: <input type="number" name="room"/></p>
 
 
-    <p><input type="submit" name="Submit"/></p>
+<div class="page-header">
+    <h3>Edit Gym Class</h3>
+</div>
+
+<form th:action="@{/gymClasses/update/{id}(id=${gymClass.id})}" th:object="${gymClass}" method="POST">
+    <div class="form-group">
+
+        <label for="gymDateHour">Date and hour</label>
+        <input class="form-control" type="datetime-local" name="date" id="gymDateHour" th:value="${gymClass.date}"
+               REQUIRED/>
+
+
+    </div>
+    <div class="form-group">
+        <label for="gymClassType">Gym Class Type</label>
+        <select class="form-control" required="required" name="gymClassType" id="gymClassType">
+            <option selected="selected" th:value="${gymClass.gymClassType.id}"
+                    th:text="${gymClass.gymClassType.name}"></option>
+            <option th:each="gymClassType : ${gymClassTypes}" th:value="${gymClassType.id}"
+                    th:text="${gymClassType.name}"></option>
+
+        </select>
+
+
+    </div>
+    <div class="form-group">
+        <label for="room">Room</label>
+        <select class="form-control" required="required" name="room" id="room">
+            <option selected="selected" th:value="${gymClass.room.id}" th:text="${gymClass.room.name}"></option>
+            <option th:each="room : ${rooms}" th:value="${room.id}"
+                    th:text="${room.name}"></option>
+
+        </select>
+
+
+    </div>
+    <button type="submit" class="btn btn-default">Save</button>
+    <button type="button" class="btn btn-default"><a th:href="@{/gymClasses}"
+                                                     style="text-decoration: none; color:black">Cancel</a></button>
+
 </form>
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
 </body>
 </html>

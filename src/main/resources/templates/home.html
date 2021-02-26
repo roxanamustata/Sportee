@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      xmlns:tiles="http://www.w3.org/1999/xhtml" xmlns:sec="http://www.w3.org/1999/xhtml">
+      xmlns:sec="http://www.w3.org/1999/xhtml">
 <head>
     <title>Sportee</title>
     <meta charset="utf-8">
@@ -71,7 +71,7 @@
 
             <div th:if="${#httpServletRequest.remoteUser != null}">
                 <form th:action="@{/logout}" method="post"> Hello [[${#httpServletRequest.remoteUser}]]!
-                    <input type="submit" value="Sign Out"/>
+                    <input type="submit" value="Sign Out" class="btn"/>
                 </form>
             </div>
         </div>

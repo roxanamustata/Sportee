@@ -70,7 +70,7 @@
             </ul>
             <div th:if="${#httpServletRequest.remoteUser != null}">
                 <form th:action="@{/logout}" method="post"> Hello [[${#httpServletRequest.remoteUser}]]!
-                    <input type="submit" value="Sign Out"/>
+                    <input type="submit" value="Sign Out" class="btn"/>
                 </form>
             </div>
         </div>

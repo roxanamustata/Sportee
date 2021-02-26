@@ -56,9 +56,17 @@ public class GymClassService implements IGymClassService {
     }
 
     @Override
+    public GymClass findGymClass(Integer id) {
+        GymClass gymClass = gymClassRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid gym class: " + id));
+        return gymClass;
+    }
+
+    @Override
     public void deleteGymClass(Integer id) {
         gymClassRepository.deleteById(id);
     }
+
 
     @Override
     public HourDTO[] getTimetable() {
@@ -84,14 +92,13 @@ public class GymClassService implements IGymClassService {
         return timetable;
     }
 
-    @Override
-    public void editGymClass(Integer id, Optional<LocalDateTime> date, Optional<Integer> gymClassTypeId, Optional<Integer> roomId) {
+    public void editGymClass(Integer id, LocalDateTime date, Integer gymClassTypeId, Integer roomId) {
         Optional<GymClass> gymClass = gymClassRepository.findById(id);
         Optional<GymClassType> gymClassType = gymClassTypeRepository.findById(gymClassTypeId);
         Optional<Room> room = roomRepository.findById(roomId);
 
         gymClass.ifPresent(g -> {
-            date.ifPresent(d -> g.setDate(d));
+            g.setDate(date);
             gymClassType.ifPresent(t -> g.setGymClassType(t));
             room.ifPresent(r -> g.setRoom(r));
             gymClassRepository.save(g);

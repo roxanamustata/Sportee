@@ -1,11 +1,11 @@
 package com.sportee.sportee.services;
 
+import com.sportee.sportee.data.DAO.GymClass;
 import com.sportee.sportee.data.DTO.GymClassDTO;
 import com.sportee.sportee.data.DTO.HourDTO;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 public interface IGymClassService {
 
@@ -13,10 +13,13 @@ public interface IGymClassService {
 
     void insertGymClass(LocalDateTime date, int gymClassTypeId, int roomId);
 
+    GymClass findGymClass(Integer id);
+
     void deleteGymClass(Integer id);
+
 
     HourDTO[] getTimetable();
 
-    void editGymClass(Integer id, Optional<LocalDateTime> date, Optional<Integer> gymClassTypeId, Optional<Integer> roomId);
+    void editGymClass(Integer id, LocalDateTime date, Integer gymClassTypeId, Integer roomId);
 }
 
