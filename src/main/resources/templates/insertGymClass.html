@@ -1,38 +1,58 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Sportee</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
 <body>
-<p>
-    Insert:
-</p>
+<div class="page-header">
+    <h3>Insert new Gym Class</h3>
+</div>
 <form th:action="@{/gymClasses/insertGymClass}" method="POST">
+    <div class="form-group">
+        <label for="gymDateHour">Date and hour</label>
+        <span id="gymDateHour">
+        <input class="form-control" type="date" name="date" REQUIRED/></span>
+        <input class="form-control" type="time" name="time" min="09:00" max="20:01" REQUIRED/></span>
 
-    <p><span>Date and hour: <input type="date" name="date"  REQUIRED/></span>
-        <span><input type="time" name="time" min="09:00" max="20:01" REQUIRED/></span>
-    </p>
-    <p>Gym Class Type:
-        <select class="form-control" required="required" name="gymClassType" >
-            <option disabled="disabled" selected="selected" > --
-                alege tipul de clasa --</option>
+        </span>
+
+    </div>
+    <div class="form-group">
+
+        <label for="gymClassType">Gym Class Type</label>
+        <select class="form-control" required="required" name="gymClassType" id="gymClassType">
+            <option disabled="disabled" selected="selected"> --
+                Choose gym class type --
+            </option>
             <option th:each="gymClassType : ${gymClassTypes}" th:value="${gymClassType.id}"
-                    th:text="${gymClassType.name}" ></option>
+                    th:text="${gymClassType.name}"></option>
 
         </select>
-        <a href="/gymClassTypes/insertGymClassType"> Add </a> new gym class type
-    </p>
+        <span style="float:right">  <a href="/gymClassTypes/insertGymClassType"> Add </a> new gym class type</span>
+    </div>
 
-    <p>Room:
-        <select class="form-control" required="required" name="room" >
-            <option disabled="disabled" selected="selected" > --
-                alege sala --</option>
+    <div class="form-group">
+        <label for="room">Room</label>
+        <select class="form-control" required="required" name="room" id="room">
+            <option disabled="disabled" selected="selected"> --
+                Choose room --
+            </option>
             <option th:each="room : ${rooms}" th:value="${room.id}"
-                    th:text="${room.name}" ></option>
+                    th:text="${room.name}"></option>
 
         </select>
-        <a href="/rooms/insertRoom"> Add </a> new room
-    </p>
+        <p style="float:right"><a href="/rooms/insertRoom"> Add </a> new room </p>
+    </div>
 
 
-    <p><input type="submit" name="Submit"/></p>
+    <button type="submit" class="btn btn-default">Save</button>
+    <button type="button" class="btn btn-default"><a th:href="@{/gymClasses}"
+                                                     style="text-decoration: none; color:black">Cancel</a></button>
+
 </form>
 </body>
 </html>
