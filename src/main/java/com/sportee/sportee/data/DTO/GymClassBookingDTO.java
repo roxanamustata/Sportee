@@ -1,6 +1,7 @@
 package com.sportee.sportee.data.DTO;
 
 import com.sportee.sportee.data.DAO.GymClassBooking;
+import com.sportee.sportee.data.DAO.GymClassBookingKey;
 import lombok.Getter;
 
 import java.time.LocalDateTime;
@@ -9,7 +10,7 @@ import java.time.LocalDateTime;
 @Getter
 public class GymClassBookingDTO {
 
-    private int id;
+    private GymClassBookingKey id;
     private LocalDateTime gymClassDate;
     private String gymClassType;
     private String user;

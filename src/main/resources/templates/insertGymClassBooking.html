@@ -4,15 +4,16 @@
 <p>
     Insert
 </p>
-<form th:action="@{/gymClassBookings/insertGymClassBooking}" method="POST">
+<form th:action="@{/gymClassBookings/insertGymClassBooking}" method="POST" object="gymClassBooking">
 
 
     <p>Gym Class:
-        <select class="form-control" required="required" name="gymClass" >
-            <option disabled="disabled" selected="selected" > --
-                choose gym class --</option>
+        <select class="form-control" required="required" name="gymClass">
+            <option disabled="disabled" selected="selected"> --
+                choose gym class --
+            </option>
             <option th:each="gymClass : ${gymClasses}" th:value="${gymClass.id}"
-                    th:text="${gymClass.gymClassType}+${gymClass.date}" ></option>
+                    th:text="${gymClass.gymClassType}+${gymClass.date}"></option>
 
         </select>
 

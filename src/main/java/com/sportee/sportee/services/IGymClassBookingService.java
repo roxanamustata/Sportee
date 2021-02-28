@@ -1,6 +1,8 @@
 package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DAO.GymClass;
+import com.sportee.sportee.data.DAO.GymClassBooking;
+import com.sportee.sportee.data.DAO.GymClassBookingKey;
 import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.GymClassBookingDTO;
 
@@ -10,9 +12,9 @@ import java.util.Optional;
 public interface IGymClassBookingService {
     List<GymClassBookingDTO> getAllGymClassBookings();
 
-    void insertGymClassBooking(Integer gymClassId, Integer userId);
+    void insertGymClassBooking(GymClassBooking gymClassBooking) throws Exception;
 
-    void deleteGymClassBooking(Integer id);
+    void deleteGymClassBooking(GymClassBookingKey id);
 
     void editGymClassBooking(Integer id, Optional<Boolean> value, Optional<GymClass> gymClass, Optional<User> user);
 

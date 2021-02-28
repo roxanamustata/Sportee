@@ -93,9 +93,14 @@
 <section class="ftco-section contact-section">
     <div class="container">
         <table border="2" width="70%" cellpadding="2">
-            <tr><th>No</th><th>Date&Hour</th><th>Class</th><th>User</th><th>Cancel</th></tr>
+            <tr>
+                <th>Date&Hour</th>
+                <th>Class</th>
+                <th>User</th>
+                <th>Cancel</th>
+            </tr>
             <tr th:each="m: ${gymClassBookings}">
-                <td th:text="${m.id}"> </td>
+                <!--                <td th:text="${m.id}"> </td>-->
                 <td th:text="${m.gymClassDate}"> </td>
                 <td th:text="${m.gymClassType}"> </td>
                 <td th:text="${m.user}">  </td>

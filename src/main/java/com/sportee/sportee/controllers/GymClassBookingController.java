@@ -1,5 +1,7 @@
 package com.sportee.sportee.controllers;
 
+import com.sportee.sportee.data.DAO.GymClassBooking;
+import com.sportee.sportee.data.DAO.GymClassBookingKey;
 import com.sportee.sportee.services.GymClassBookingService;
 import com.sportee.sportee.services.GymClassService;
 import com.sportee.sportee.services.UserService;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
 
 @PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_trainer')")
 @Controller
@@ -27,7 +30,7 @@ public class GymClassBookingController {
         this.gymClassBookingService = gymClassBookingService;
     }
 
-    @RequestMapping(method= RequestMethod.GET)
+    @RequestMapping(method = RequestMethod.GET)
     public ModelAndView showAllGymClassBookings() {
         ModelAndView mv = new ModelAndView("gymClassBookings");
         mv.addObject("gymClassBookings", gymClassBookingService.getAllGymClassBookings());
@@ -47,14 +50,18 @@ public class GymClassBookingController {
     }
 
     @RequestMapping(value = "/insertGymClassBooking", method = RequestMethod.POST)
-    public String insertGymClassBooking(Integer gymClass, Integer user) {
+    public String insertGymClassBooking(GymClassBooking gymClassBooking) {
 
-        gymClassBookingService.insertGymClassBooking(gymClass, user);
+        if (gymClassBooking.getGymClass().getAvailable() < 1) {
+            return "redirect:/error";
+        }
+
+        gymClassBookingService.insertGymClassBooking(gymClassBooking);
         return "redirect:/gymClassBookings";
     }
 
     @RequestMapping("/{id}/delete")
-    public String deleteGymClassBooking(@PathVariable Integer id) {
+    public String deleteGymClassBooking(@PathVariable GymClassBookingKey id) {
         gymClassBookingService.deleteGymClassBooking(id);
         return "redirect:/gymClassBookings";
 
@@ -67,5 +74,6 @@ public class GymClassBookingController {
         gymClassBookingService.bookGymClassBooking(gymClass, remoteUserName);
         return "redirect:/schedule";
     }
+
 
 }

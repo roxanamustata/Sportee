@@ -2,6 +2,7 @@ package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DAO.GymClass;
 import com.sportee.sportee.data.DAO.GymClassBooking;
+import com.sportee.sportee.data.DAO.GymClassBookingKey;
 import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.GymClassBookingDTO;
 import com.sportee.sportee.repositories.GymClassBookingRepository;
@@ -37,24 +38,30 @@ public class GymClassBookingService implements IGymClassBookingService {
     }
 
     @Override
-    public void insertGymClassBooking(Integer gymClassId, Integer userId) {
-        Optional<GymClass> gymClass = gymClassRepository.findById(gymClassId);
-        Optional<User> user = userRepository.findById(userId);
+    public void insertGymClassBooking(GymClassBooking gymClassBooking) {
+        Optional<GymClass> gymClass = gymClassRepository.findById(gymClassBooking.getGymClass().getId());
+        Optional<User> user = userRepository.findById(gymClassBooking.getUser().getId());
 
-        gymClass.ifPresent(g -> {
+        gymClass.ifPresent(
+                g -> {
+                    if (g.getAvailable() >= 1) {
+                        user.ifPresent(u -> {
 
-            user.ifPresent(u -> {
-                GymClassBooking gb = GymClassBooking.builder()
-                        .gymClass(g).user(u).build();
+                            GymClassBooking gb = GymClassBooking.builder()
+                                    .gymClass(g).user(u).build();
+                            System.out.println(gb.getGymClass().getGymClassType().getName());
+                            System.out.println(gb.getUser().getFirstName());
+                            gymClassBookingRepository.save(gb);
+                        });
+                    }
+                });
 
-                gymClassBookingRepository.save(gb);
-            });
-        });
     }
 
 
     @Override
-    public void deleteGymClassBooking(Integer id) {
+    public void deleteGymClassBooking(GymClassBookingKey id) {
+
         gymClassBookingRepository.deleteById(id);
     }
 
@@ -69,12 +76,12 @@ public class GymClassBookingService implements IGymClassBookingService {
         User user = userRepository.findByUserName(remoteUserName);
 
         gymClass.ifPresent(g -> {
+            if (g.getAvailable() >= 1) {
+                GymClassBooking gb = GymClassBooking.builder()
+                        .gymClass(g).user(user).build();
 
-
-            GymClassBooking gb = GymClassBooking.builder()
-                    .gymClass(g).user(user).build();
-
-            gymClassBookingRepository.save(gb);
+                gymClassBookingRepository.save(gb);
+            }
         });
 
 

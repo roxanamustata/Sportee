@@ -15,26 +15,25 @@ import java.util.List;
 @NoArgsConstructor
 public class GymClass {
 
+    @OneToMany(mappedBy = "gymClass")
+    List<GymClassBooking> bookings;
 
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @EqualsAndHashCode.Include
     @Id
     private int id;
-    private LocalDateTime date;
 
+    private LocalDateTime date;
 
     @ManyToOne
     @JoinColumn(name = "gym_class_type_id")
     private GymClassType gymClassType;
 
-
     @ManyToOne
     @JoinColumn(name = "room_id")
     private Room room;
 
-
-    @OneToMany(mappedBy = "gymClass")
-    List<GymClassBooking> bookings;
+    private int available;
 
 
     @Builder(toBuilder = true)
@@ -43,6 +42,7 @@ public class GymClass {
         this.date = date;
         this.gymClassType = gymClassType;
         this.room = room;
+        this.available = room.getCapacity();
     }
 
 
