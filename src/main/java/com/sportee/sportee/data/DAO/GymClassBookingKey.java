@@ -19,6 +19,12 @@ public class GymClassBookingKey implements Serializable {
     @Column(name = "gym_class_id")
     int gymClassId;
 
+
+    public GymClassBookingKey(int userId, int gymClassId) {
+        this.userId = userId;
+        this.gymClassId = gymClassId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -30,5 +36,10 @@ public class GymClassBookingKey implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(userId, gymClassId);
+    }
+
+    @Override
+    public String toString() {
+        return userId + "," + gymClassId;
     }
 }

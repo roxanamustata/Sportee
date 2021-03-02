@@ -8,5 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GymClassBookingRepository extends CrudRepository<GymClassBooking, GymClassBookingKey> {
 
+    GymClassBooking findByUserIdAndGymClassId(int userId, int gymClassId);
+
 
 }

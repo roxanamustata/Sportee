@@ -80,10 +80,10 @@
 
 <section class="hero-wrap" >
     <div class="overlay"></div>
-    <div class="container">
+    <div class="container reduced">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center">
-                <h6 class="mb-3 bread">Plan the classes for next week</h6>
+            <div class="col-md-9 ftco-animate text-center reduced">
+                <h6 class="mb-3 bread">Gym class bookings</h6>
                 <!--            <p class="breadcrumbs"><span class="mr-2"><a href="home.html">Home</a></span> <span>Contact</span></p>-->
             </div>
         </div>
@@ -92,23 +92,23 @@
 
 <section class="ftco-section contact-section">
     <div class="container">
-        <table border="2" width="70%" cellpadding="2">
+        <table border="2" width="50%" cellpadding="1">
             <tr>
                 <th>Date&Hour</th>
                 <th>Class</th>
                 <th>User</th>
-                <th>Cancel</th>
+                <th>Cancel booking</th>
             </tr>
-            <tr th:each="m: ${gymClassBookings}">
+            <tr th:each="gymClassBooking: ${gymClassBookings}">
                 <!--                <td th:text="${m.id}"> </td>-->
-                <td th:text="${m.gymClassDate}"> </td>
-                <td th:text="${m.gymClassType}"> </td>
-                <td th:text="${m.user}">  </td>
-<!--                <td> <a th:href="@{/gymClassBookings/{id}/editGymClassBooking(id=${m.id})}">-->
-<!--                    Edit</a>-->
-<!--                </td>-->
-                <td> <a th:href="@{/gymClassBookings/{id}/delete(id=${m.id})}">
-                    x</a>
+                <td th:text="${gymClassBooking.gymClassDate}"></td>
+                <td th:text="${gymClassBooking.gymClassType}"></td>
+                <td th:text="${gymClassBooking.user}"></td>
+                <!--                <td> <a th:href="@{/gymClassBookings/{id}/editGymClassBooking(id=${m.id})}">-->
+                <!--                    Edit</a>-->
+                <!--                </td>-->
+                <td><a th:href="@{/gymClassBookings/{id}/delete(id=${gymClassBooking.id})}">
+                    Cancel</a>
                 </td>
             </tr>
         </table>

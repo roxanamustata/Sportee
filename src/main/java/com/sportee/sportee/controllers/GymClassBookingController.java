@@ -1,7 +1,6 @@
 package com.sportee.sportee.controllers;
 
 import com.sportee.sportee.data.DAO.GymClassBooking;
-import com.sportee.sportee.data.DAO.GymClassBookingKey;
 import com.sportee.sportee.services.GymClassBookingService;
 import com.sportee.sportee.services.GymClassService;
 import com.sportee.sportee.services.UserService;
@@ -60,9 +59,10 @@ public class GymClassBookingController {
         return "redirect:/gymClassBookings";
     }
 
-    @RequestMapping("/{id}/delete")
-    public String deleteGymClassBooking(@PathVariable GymClassBookingKey id) {
-        gymClassBookingService.deleteGymClassBooking(id);
+    @RequestMapping("/{userId},{gymClassId}/delete")
+    public String deleteGymClassBooking(@PathVariable Integer userId, @PathVariable Integer gymClassId) {
+
+        gymClassBookingService.deleteGymClassBooking(userId, gymClassId);
         return "redirect:/gymClassBookings";
 
     }

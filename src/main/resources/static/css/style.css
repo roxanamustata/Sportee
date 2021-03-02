@@ -454,6 +454,7 @@ pre {
   max-height: 340px;
   overflow-y: scroll; }
 
+
 .container {
   width: 100%;
   padding-right: 15px;
@@ -473,6 +474,9 @@ pre {
     .container {
       max-width: 1140px; } }
 
+.reduced {
+height: 300px;
+}
 .container-fluid {
   width: 100%;
   padding-right: 15px;

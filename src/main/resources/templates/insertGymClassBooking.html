@@ -1,14 +1,22 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <title>Sportee</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+</head>
 <body>
-<p>
-    Insert
-</p>
+<div class="page-header">
+    <h3>Book A Gym Class</h3>
+</div>
 <form th:action="@{/gymClassBookings/insertGymClassBooking}" method="POST" object="gymClassBooking">
 
-
-    <p>Gym Class:
-        <select class="form-control" required="required" name="gymClass">
+    <div class="form-group">
+        <label for="gymClass">Gym Class</label>
+        <select class="form-control" required="required" name="gymClass" id="gymClass">
             <option disabled="disabled" selected="selected"> --
                 choose gym class --
             </option>
@@ -17,20 +25,26 @@
 
         </select>
 
-    </p>
-    <p>Member:
-        <select class="form-control" required="required" name="user" >
-            <option disabled="disabled" selected="selected" > --
-                choose member --</option>
+    </div>
+    <div class="form-group">
+        <label for="user">Member</label>
+        <select class="form-control" required="required" name="user" id="user">
+            <option disabled="disabled" selected="selected"> --
+                choose member --
+            </option>
             <option th:each="user : ${users}" th:value="${user.id}"
-                    th:text="${user.firstName}+' '+${user.lastName}" ></option>
+                    th:text="${user.firstName}+' '+${user.lastName}"></option>
 
         </select>
 
-    </p>
+    </div>
+
+    <button type="submit" class="btn btn-default">Save</button>
+    <button type="button" class="btn btn-default"><a th:href="@{/gymClassBookings}"
+                                                     style="text-decoration: none; color:black">Cancel</a></button>
 
 
-    <p><input type="submit" name="Submit"/></p>
+    </div>
 </form>
 </body>
 </html>

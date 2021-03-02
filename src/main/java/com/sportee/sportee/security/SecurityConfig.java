@@ -19,7 +19,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         this.userPrincipalDetailsService = userPrincipalDetailsService;
     }
 
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 

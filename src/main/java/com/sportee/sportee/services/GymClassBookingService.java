@@ -2,7 +2,6 @@ package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DAO.GymClass;
 import com.sportee.sportee.data.DAO.GymClassBooking;
-import com.sportee.sportee.data.DAO.GymClassBookingKey;
 import com.sportee.sportee.data.DAO.User;
 import com.sportee.sportee.data.DTO.GymClassBookingDTO;
 import com.sportee.sportee.repositories.GymClassBookingRepository;
@@ -49,8 +48,6 @@ public class GymClassBookingService implements IGymClassBookingService {
 
                             GymClassBooking gb = GymClassBooking.builder()
                                     .gymClass(g).user(u).build();
-                            System.out.println(gb.getGymClass().getGymClassType().getName());
-                            System.out.println(gb.getUser().getFirstName());
                             gymClassBookingRepository.save(gb);
                         });
                     }
@@ -60,9 +57,14 @@ public class GymClassBookingService implements IGymClassBookingService {
 
 
     @Override
-    public void deleteGymClassBooking(GymClassBookingKey id) {
-
-        gymClassBookingRepository.deleteById(id);
+    public void deleteGymClassBooking(Integer userId, Integer gymClassId) {
+        GymClassBooking gymClassBooking = gymClassBookingRepository.findByUserIdAndGymClassId(userId, gymClassId);
+        gymClassBookingRepository.delete(gymClassBooking);
+        Optional<GymClass> gymClass = gymClassRepository.findById(gymClassId);
+        gymClass.ifPresent(g -> {
+            g.setAvailable(g.getAvailable() + 1);
+            gymClassRepository.save(g);
+        });
     }
 
     @Override
