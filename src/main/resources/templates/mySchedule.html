@@ -42,7 +42,7 @@
                 <li class="nav-item"><a href="/gym" class="nav-link pl-0">Classes</a></li>
                 <li class="nav-item"><a href="/trainers" class="nav-link pl-0">Trainers</a></li>
                 <li class="nav-item"><a href="/schedule" class="nav-link pl-0">Schedule</a></li>
-                <li class="nav-item active"><a href="/contact" class="nav-link pl-0">Contact</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link pl-0">Contact</a></li>
                 <li class="nav-item"><a href="/login" class="nav-link pl-0">Membership</a></li>
                 <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/users"
                                                                               class="nav-link pl-0">Users</a></li>
@@ -57,8 +57,9 @@
                 <li sec:authorize="hasAnyRole('ROLE_trainer', 'ROLE_admin')" class="nav-item"><a href="/gymClassBookings"
                                                                                                  class="nav-link pl-0">Bookings</a>
                 </li>
-                <li sec:authorize="hasRole('ROLE_client')" class="nav-item"><a href="/mySchedule"
-                                                                               class="nav-link pl-0">My Schedule</a>
+                <li sec:authorize="hasRole('ROLE_client')" class="nav-item active"><a href="/mySchedule"
+                                                                                      class="nav-link pl-0">My
+                    Schedule</a>
                 </li>
                 <li sec:authorize="hasRole('ROLE_client')" class="nav-item"><a href="/myProgress"
                                                                                class="nav-link pl-0">My Progress</a>
@@ -77,19 +78,42 @@
 </nav>
 <!-- END nav -->
 
-<section class="hero-wrap js-fullheight" style="background-image: url('images/bg_2.jpg');">
+<section class="hero-wrap" style="background-image: url('images/bg_2.jpg');">
     <div class="overlay"></div>
-    <div class="container">
+    <div class="container reduced">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center">
-                <h1 class="mb-3 bread">My Schedule</h1>
-                <p>Under construction</p>
+            <div class="col-md-9 ftco-animate text-center reduced">
+                <h3 class="mb-3 bread">My Schedule</h3>
+
 
             </div>
         </div>
     </div>
 </section>
+<section class="ftco-section contact-section">
+    <div class="container">
+        <h6 class="mb-3 bread">Check or cancel your bookings</h6>
 
+        <table border="2" width="50%" cellpadding="1">
+            <tr>
+                <th>Date&Hour</th>
+                <th>Class</th>
+                <th>Cancel booking</th>
+            </tr>
+
+            <tr th:each="gymClassBooking: ${gymClassBookings}">
+
+                <td th:text="${gymClassBooking.gymClassDate}"></td>
+                <td th:text="${gymClassBooking.gymClassType}"></td>
+                <td><a th:href="@{/gymClassBookings/{id}/cancel(id=${gymClassBooking.id})}">Cancel</a>
+                </td>
+
+            </tr>
+        </table>
+        </p>
+
+    </div>
+</section>
 
 
 <footer class="ftco-footer ftco-section img">

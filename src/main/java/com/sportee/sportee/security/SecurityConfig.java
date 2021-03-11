@@ -24,15 +24,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
         http
                 .authorizeRequests()
-                .antMatchers("/home.html", "/contact/**","/schedule/**","/trainers/**", "/login/**", "/users/insert" ).permitAll()
-                .antMatchers("/gymClassTypes/**","/subscriptionTypes/**", "/subscriptions/**",
-                        "/gymClasses/**","/rooms/**","/users/**", "/measurements/**", "/gymClassBookings/**").authenticated()
+                .antMatchers("/home.html", "/contact/**", "/schedule/**", "/trainers/**", "/login/**", "/users/insert").permitAll()
+                .antMatchers("/gymClassTypes/**", "/subscriptionTypes/**", "/subscriptions/**",
+                        "/gymClasses/**", "/rooms/**", "/users/**", "/measurements/**", "/gymClassBookings/**",
+                        "/mySchedule/**", "/myAccount/**", "/myProgress/**").authenticated()
                 .antMatchers(
-                        "/gymClassTypes/**","/subscriptionTypes/**", "/subscriptions/**",
-                        "/gymClasses/**","/rooms/**","/users/**").hasRole("admin")
+                        "/gymClassTypes/**", "/subscriptionTypes/**", "/subscriptions/**",
+                        "/gymClasses/**", "/rooms/**", "/users/**").hasRole("admin")
                 .antMatchers("/measurements/**").hasRole("trainer")
-                .antMatchers( "/gymClassBookings/**").hasAnyRole("trainer", "admin")
-                .antMatchers( "/myTimetable/**", "/myAccount/**", "/myProgress/**").hasRole("client")
+                .antMatchers("/gymClassBookings/**").hasAnyRole("trainer", "admin", "client")
+                .antMatchers("/mySchedule/**").hasRole("client")
+                .antMatchers("/myAccount/**").hasRole("client")
+                .antMatchers("/myProgress/**").hasRole("client")
                 .and()
                 .formLogin()
                 .loginProcessingUrl("/login")

@@ -37,6 +37,16 @@ public class GymClassBookingService implements IGymClassBookingService {
     }
 
     @Override
+    public List<GymClassBookingDTO> getAllGymClassBookingsByUserName(String userName) {
+        User user = userRepository.findByUserName(userName);
+
+        List<GymClassBookingDTO> gymClassBookings = new ArrayList<GymClassBookingDTO>();
+        Iterable<GymClassBooking> all = gymClassBookingRepository.findAllByUserId(user.getId());
+        all.forEach(g -> gymClassBookings.add(new GymClassBookingDTO(g)));
+        return gymClassBookings;
+    }
+
+    @Override
     public void insertGymClassBooking(GymClassBooking gymClassBooking) {
         Optional<GymClass> gymClass = gymClassRepository.findById(gymClassBooking.getGymClass().getId());
         Optional<User> user = userRepository.findById(gymClassBooking.getUser().getId());
@@ -54,7 +64,6 @@ public class GymClassBookingService implements IGymClassBookingService {
                 });
 
     }
-
 
     @Override
     public void deleteGymClassBooking(Integer userId, Integer gymClassId) {

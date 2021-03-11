@@ -11,6 +11,9 @@ import java.util.Optional;
 public interface IGymClassBookingService {
     List<GymClassBookingDTO> getAllGymClassBookings();
 
+    List<GymClassBookingDTO> getAllGymClassBookingsByUserName(String userName);
+
+
     void insertGymClassBooking(GymClassBooking gymClassBooking) throws Exception;
 
     void deleteGymClassBooking(Integer userId, Integer gymClassId);
@@ -18,4 +21,6 @@ public interface IGymClassBookingService {
     void editGymClassBooking(Integer id, Optional<Boolean> value, Optional<GymClass> gymClass, Optional<User> user);
 
     void bookGymClassBooking(Integer gymClass, String remoteUserName);
+
+
 }

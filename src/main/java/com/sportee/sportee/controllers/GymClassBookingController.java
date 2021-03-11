@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 
-@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_trainer')")
+@PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_trainer', 'ROLE_client')")
 @Controller
 @RequestMapping("/gymClassBookings")
 public class GymClassBookingController {
@@ -67,12 +67,19 @@ public class GymClassBookingController {
 
     }
 
+    @RequestMapping("/{userId},{gymClassId}/cancel")
+    public String cancelBooking(@PathVariable Integer userId, @PathVariable Integer gymClassId) {
+
+        gymClassBookingService.deleteGymClassBooking(userId, gymClassId);
+        return "redirect:/mySchedule";
+
+    }
 
     @RequestMapping(value = "/{gymClass}/{remoteUserName}/bookGymClass", method = RequestMethod.POST)
     public String bookGymClass(@PathVariable("gymClass") Integer gymClass, @PathVariable("remoteUserName") String remoteUserName) {
 
         gymClassBookingService.bookGymClassBooking(gymClass, remoteUserName);
-        return "redirect:/schedule";
+        return "redirect:/mySchedule";
     }
 
 
