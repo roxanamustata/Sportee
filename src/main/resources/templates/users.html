@@ -44,8 +44,9 @@
                 <li class="nav-item"><a href="/contact" class="nav-link pl-0">Contact</a></li>
                 <li class="nav-item"><a href="/login" class="nav-link pl-0">Membership</a></li>
 
-                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/users"
-                                                                              class="nav-link pl-0">Users</a></li>
+                <li sec:authorize="hasRole('ROLE_admin')" class="nav-item active"><a href="/users"
+                                                                                     class="nav-link pl-0">Users</a>
+                </li>
                 <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/subscriptions"
                                                                               class="nav-link pl-0">Subscriptions</a>
                 </li>

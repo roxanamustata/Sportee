@@ -42,7 +42,7 @@
                 <li class="nav-item"><a href="/gym" class="nav-link pl-0">Classes</a></li>
                 <li class="nav-item"><a href="/trainers" class="nav-link pl-0">Trainers</a></li>
                 <li class="nav-item"><a href="/schedule" class="nav-link pl-0">Schedule</a></li>
-                <li class="nav-item active"><a href="/contact" class="nav-link pl-0">Contact</a></li>
+                <li class="nav-item"><a href="/contact" class="nav-link pl-0">Contact</a></li>
                 <li class="nav-item"><a href="/login" class="nav-link pl-0">Membership</a></li>
                 <li sec:authorize="hasRole('ROLE_admin')" class="nav-item"><a href="/users"
                                                                               class="nav-link pl-0">Users</a></li>
@@ -60,8 +60,9 @@
                 <li sec:authorize="hasRole('ROLE_client')" class="nav-item"><a href="/mySchedule"
                                                                                class="nav-link pl-0">My Schedule</a>
                 </li>
-                <li sec:authorize="hasRole('ROLE_client')" class="nav-item"><a href="/myProgress"
-                                                                               class="nav-link pl-0">My Progress</a>
+                <li sec:authorize="hasRole('ROLE_client')" class="nav-item active"><a href="/myProgress"
+                                                                                      class="nav-link pl-0">My
+                    Progress</a>
                 </li>
                 <li sec:authorize="hasRole('ROLE_client')" class="nav-item"><a href="/myAccount"
                                                                                class="nav-link pl-0">My Account</a>
