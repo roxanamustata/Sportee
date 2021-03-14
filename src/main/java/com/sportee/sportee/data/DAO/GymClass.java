@@ -12,6 +12,7 @@ import java.util.List;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Table(name = "gym_class")
 @NoArgsConstructor
 public class GymClass {
 

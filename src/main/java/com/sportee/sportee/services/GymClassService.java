@@ -106,4 +106,15 @@ public class GymClassService implements IGymClassService {
     }
 
 
+    public List<GymClassDTO> searchGymClasses(String keyword) {
+        if (keyword != null) {
+            List<GymClassDTO> gymClasses = new ArrayList<GymClassDTO>();
+            Iterable<GymClass> all = gymClassRepository.search(keyword);
+            all.forEach(g -> gymClasses.add(new GymClassDTO(g)));
+            return gymClasses;
+        }
+        return getAllGymClasses();
+    }
+
+
 }

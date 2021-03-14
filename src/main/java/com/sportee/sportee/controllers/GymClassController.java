@@ -1,10 +1,12 @@
 package com.sportee.sportee.controllers;
 
 import com.sportee.sportee.data.DAO.GymClass;
+import com.sportee.sportee.data.DTO.GymClassDTO;
 import com.sportee.sportee.services.GymClassService;
 import com.sportee.sportee.services.GymClassTypeService;
 import com.sportee.sportee.services.RoomService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.util.List;
 
 @PreAuthorize("hasRole('ROLE_admin')")
 @Controller
@@ -91,4 +94,15 @@ public class GymClassController {
         gymClassService.editGymClass(gymClass.getId(), dateTime, gymClassType, room);
         return "redirect:/gymClasses";
     }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView searchGymClasses(@Param("keyword") String keyword) {
+
+        ModelAndView mv = new ModelAndView("gymClasses");
+        List<GymClassDTO> gymClasses = gymClassService.searchGymClasses(keyword);
+        mv.addObject("gymClasses", gymClasses);
+        return mv;
+    }
+
+
 }
