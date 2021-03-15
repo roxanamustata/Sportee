@@ -32,7 +32,8 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container pl-0">
         <a class="navbar-brand py-2 px-4" href="home.html">Sportee</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav"
+                aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
         <div class="collapse navbar-collapse" id="ftco-nav">
@@ -79,7 +80,7 @@
 </nav>
 
 
-<section class="hero-wrap" >
+<section class="hero-wrap">
     <div class="overlay"></div>
     <div class="container reduced">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
@@ -103,25 +104,25 @@
         </form>
         <br>
 
-        <table border="2" width="50%" cellpadding="1">
+        <table border="2" width="50%" cellpadding="1" class="serial-counter">
+            <thead>
             <tr>
+                <th>No</th>
                 <th>Date&Hour</th>
                 <th>Class</th>
                 <th>User</th>
                 <th>Cancel booking</th>
             </tr>
+            </thead>
+            <tbody>
             <tr th:each="gymClassBooking: ${gymClassBookings}">
-                <!--                <td th:text="${m.id}"> </td>-->
+                <td></td>
                 <td th:text="${gymClassBooking.gymClassDate}"></td>
                 <td th:text="${gymClassBooking.gymClassType}"></td>
                 <td th:text="${gymClassBooking.user}"></td>
-                <!--                <td> <a th:href="@{/gymClassBookings/{id}/editGymClassBooking(id=${m.id})}">-->
-                <!--                    Edit</a>-->
-                <!--                </td>-->
-                <td><a th:href="@{/gymClassBookings/{id}/delete(id=${gymClassBooking.id})}">
-                    Cancel</a>
-                </td>
+                <td><a th:href="@{/gymClassBookings/{id}/delete(id=${gymClassBooking.id})}">Cancel</a></td>
             </tr>
+            </tbody>
         </table>
         </p>
         <p>
@@ -155,6 +156,7 @@
     function clearSearch() {
         window.location = "[[@{/gymClassBookings}]]";
     }
+
 
 
 </script>

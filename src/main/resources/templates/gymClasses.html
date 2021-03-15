@@ -102,7 +102,8 @@
             <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" class="btn btn-default"/>
         </form>
         <br>
-        <table border="2" width="70%" cellpadding="2">
+        <table border="2" width="50%" cellpadding="1" class="serial-counter">
+            <thead>
             <tr>
                 <th>No</th>
                 <th>Date&Hour</th>
@@ -111,8 +112,11 @@
                 <th>Edit</th>
                 <th>Delete</th>
             </tr>
+            </thead>
+            <tbody>
             <tr th:each="gymClass: ${gymClasses}">
-                <td th:text="${gymClass.id}"></td>
+                <!--                <td th:text="${gymClass.id}"></td>-->
+                <td></td>
                 <td th:text="${gymClass.date}"></td>
                 <td th:text="${gymClass.gymClassType}"></td>
                 <td th:text="${gymClass.room}"></td>
@@ -127,6 +131,7 @@
 
 
             </tr>
+            </tbody>
         </table>
         </p>
         <p>
@@ -156,6 +161,7 @@
                 stroke="#F96D00"/>
     </svg>
 </div>
+
 
 <script type="text/javascript">
     function clearSearch() {
