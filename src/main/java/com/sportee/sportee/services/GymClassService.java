@@ -39,6 +39,7 @@ public class GymClassService implements IGymClassService {
         return gymClasses;
     }
 
+    //TODO do not allow two classes in the same room
 
     @Override
     public void insertGymClass(LocalDateTime date, int gymClassTypeId, int roomId) {
@@ -92,6 +93,7 @@ public class GymClassService implements IGymClassService {
         return timetable;
     }
 
+    @Override
     public void editGymClass(Integer id, LocalDateTime date, Integer gymClassTypeId, Integer roomId) {
         Optional<GymClass> gymClass = gymClassRepository.findById(id);
         Optional<GymClassType> gymClassType = gymClassTypeRepository.findById(gymClassTypeId);
@@ -105,7 +107,7 @@ public class GymClassService implements IGymClassService {
         });
     }
 
-
+    @Override
     public List<GymClassDTO> searchGymClasses(String keyword) {
         if (keyword != null) {
             List<GymClassDTO> gymClasses = new ArrayList<GymClassDTO>();

@@ -22,5 +22,7 @@ public interface IGymClassBookingService {
 
     void bookGymClassBooking(Integer gymClass, String remoteUserName);
 
+    List<GymClassBookingDTO> searchGymClassBookings(String keyword);
+
 
 }

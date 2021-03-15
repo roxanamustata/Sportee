@@ -97,4 +97,17 @@ public class GymClassBookingService implements IGymClassBookingService {
 
 
     }
+
+    @Override
+    public List<GymClassBookingDTO> searchGymClassBookings(String keyword) {
+        if (keyword != null) {
+            List<GymClassBookingDTO> gymClassBookings = new ArrayList<GymClassBookingDTO>();
+            Iterable<GymClassBooking> all = gymClassBookingRepository.search(keyword);
+            all.forEach(g -> gymClassBookings.add(new GymClassBookingDTO(g)));
+            return gymClassBookings;
+        }
+        return getAllGymClassBookings();
+    }
+
+
 }

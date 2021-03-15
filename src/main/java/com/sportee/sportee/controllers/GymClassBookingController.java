@@ -1,10 +1,12 @@
 package com.sportee.sportee.controllers;
 
 import com.sportee.sportee.data.DAO.GymClassBooking;
+import com.sportee.sportee.data.DTO.GymClassBookingDTO;
 import com.sportee.sportee.services.GymClassBookingService;
 import com.sportee.sportee.services.GymClassService;
 import com.sportee.sportee.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +14,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 
 @PreAuthorize("hasAnyRole('ROLE_admin', 'ROLE_trainer', 'ROLE_client')")
@@ -82,5 +86,13 @@ public class GymClassBookingController {
         return "redirect:/mySchedule";
     }
 
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView searchGymClassBookings(@Param("keyword") String keyword) {
+
+        ModelAndView mv = new ModelAndView("gymClassBookings");
+        List<GymClassBookingDTO> gymClassBookings = gymClassBookingService.searchGymClassBookings(keyword);
+        mv.addObject("gymClassBookings", gymClassBookings);
+        return mv;
+    }
 
 }

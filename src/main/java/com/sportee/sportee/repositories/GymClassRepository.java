@@ -15,7 +15,7 @@ public interface GymClassRepository extends CrudRepository<GymClass, Integer> {
 
     List<GymClass> findAllByDateBetween(LocalDateTime startDate, LocalDateTime endDate);
 
-    @Query("SELECT g FROM GymClass g WHERE CONCAT(g.date,' ', g.gymClassType.name,' ', g.room.name) LIKE %?1%")
+    @Query("SELECT g FROM GymClass g WHERE CONCAT(g.date,' ',g.gymClassType.name,' ', g.room.name) LIKE %?1%")
     List<GymClass> search(String keyword);
 
 

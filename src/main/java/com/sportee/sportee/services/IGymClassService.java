@@ -21,5 +21,7 @@ public interface IGymClassService {
     HourDTO[] getTimetable();
 
     void editGymClass(Integer id, LocalDateTime date, Integer gymClassTypeId, Integer roomId);
+
+    List<GymClassDTO> searchGymClasses(String keyword);
 }
 
