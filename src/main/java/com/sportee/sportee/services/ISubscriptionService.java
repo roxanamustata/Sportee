@@ -1,5 +1,6 @@
 package com.sportee.sportee.services;
 
+import com.sportee.sportee.data.DTO.GymClassDTO;
 import com.sportee.sportee.data.DTO.SubscriptionDTO;
 
 import java.sql.Date;
@@ -15,4 +16,6 @@ public interface ISubscriptionService {
     void deleteSubscription(Integer id);
 
     void editSubscription(Integer id, Optional<Date> date, Optional<Boolean> valid);
+
+    List<SubscriptionDTO> searchSubscriptions(String keyword);
 }

@@ -9,24 +9,24 @@
     <link href="https://fonts.googleapis.com/css?family=Barlow+Semi+Condensed:100,200,200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i"
           rel="stylesheet">
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
+    <link rel="stylesheet" href="/css/open-iconic-bootstrap.min.css">
+    <link rel="stylesheet" href="/css/animate.css">
 
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <link rel="stylesheet" href="/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="/css/magnific-popup.css">
 
-    <link rel="stylesheet" href="css/aos.css">
+    <link rel="stylesheet" href="/css/aos.css">
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <link rel="stylesheet" href="/css/ionicons.min.css">
 
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    <link rel="stylesheet" href="/css/bootstrap-datepicker.css">
+    <link rel="stylesheet" href="/css/jquery.timepicker.css">
 
 
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="/css/flaticon.css">
+    <link rel="stylesheet" href="/css/icomoon.css">
+    <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
@@ -80,9 +80,9 @@
 
 <section class="hero-wrap">
     <div class="overlay"></div>
-    <div class="container">
+    <div class="container reduced">
         <div class="row no-gutters slider-text js-fullheight align-items-center justify-content-center">
-            <div class="col-md-9 ftco-animate text-center">
+            <div class="col-md-9 ftco-animate text-center reduced">
                 <h6 class="mb-3 bread">Subscriptions</h6>
                 <!--            <p class="breadcrumbs"><span class="mr-2"><a href="home.html">Home</a></span> <span>Contact</span></p>-->
             </div>
@@ -92,10 +92,18 @@
 
 <section class="ftco-section contact-section">
     <div class="container">
-        <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for name...">
-        <table id="subscriptionsTable" border="2" width="70%" cellpadding="2">
+        <form th:action="@{/subscriptions/search}">
+            <input type="text" name="keyword" id="keyword" size="50" th:value="${keyword}" style="border:none; font-style:italic" required
+                   placeholder="Filter subscriptions by member type valid"/>
+            &nbsp;
+            <input type="submit" value="Search" class="btn btn-default"/>
+            &nbsp;
+            <input type="button" value="Clear" id="btnClear" onclick="clearSearch()" class="btn btn-default"/>
+        </form>
+        <br>
+        <table id="subscriptionsTable" width="50%" cellpadding="1" class="serial-counter">
             <tr>
-                <th>Id</th>
+                <th>No</th>
                 <th>Member</th>
                 <th>Date</th>
                 <th>Subscription Type</th>
@@ -104,7 +112,7 @@
                 <th>Delete</th>
             </tr>
             <tr th:each="s: ${subscriptions}">
-                <td th:text="${s.id}"></td>
+                <td></td>
                 <td th:text="${s.user}"></td>
                 <td th:text="${s.date}"></td>
                 <td th:text="${s.subscriptionType}"></td>
@@ -116,8 +124,8 @@
                     Edit</a>
 
                 </td>
-                <td><a th:href="@{/subscriptions/{id}/delete(id=${s.id})}">
-                    Delete</a>
+                <td><a th:href="@{/subscriptions/{id}/delete(id=${s.id})}"
+                       onclick="return confirm('Are you sure you want to delete this class?');">Delete</a>
 
 
                 </td>
@@ -125,7 +133,7 @@
 
             </tr>
         </table>
-        </p>
+        </p><br><br>
         <p>
             <a href="/subscriptions/insertSubscription"> Add </a> new subscription
         </p>
@@ -153,46 +161,30 @@
     </svg>
 </div>
 
-
-<script src="js/jquery.min.js"></script>
-<script src="js/jquery-migrate-3.0.1.min.js"></script>
-<script src="js/popper.min.js"></script>
-<script src="js/bootstrap.min.js"></script>
-<script src="js/jquery.easing.1.3.js"></script>
-<script src="js/jquery.waypoints.min.js"></script>
-<script src="js/jquery.stellar.min.js"></script>
-<script src="js/owl.carousel.min.js"></script>
-<script src="js/jquery.magnific-popup.min.js"></script>
-<script src="js/aos.js"></script>
-<script src="js/jquery.animateNumber.min.js"></script>
-<script src="js/bootstrap-datepicker.js"></script>
-<script src="js/jquery.timepicker.min.js"></script>
-<script src="js/scrollax.min.js"></script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-<script src="js/google-map.js"></script>
-<script src="js/main.js"></script>
-<script>
-function myFunction() {
-  // Declare variables
-  var input, filter, table, tr, td, i, txtValue;
-  input = document.getElementById("myInput");
-  filter = input.value.toUpperCase();
-  table = document.getElementById("subscriptionsTable");
-  tr = table.getElementsByTagName("tr");
-
-  // Loop through all table rows, and hide those who don't match the search query
-  for (i = 0; i < tr.length; i++) {
-    td = tr[i].getElementsByTagName("td")[1];
-    if (td) {
-      txtValue = td.textContent || td.innerText;
-      if (txtValue.toUpperCase().indexOf(filter) > -1) {
-        tr[i].style.display = "";
-      } else {
-        tr[i].style.display = "none";
-      }
+<script type="text/javascript">
+    function clearSearch() {
+        window.location = "[[@{/subscriptions}]]";
     }
-  }
-}
+
+</script>
+<script src="/js/jquery.min.js"></script>
+<script src="/js/jquery-migrate-3.0.1.min.js"></script>
+<script src="/js/popper.min.js"></script>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery.easing.1.3.js"></script>
+<script src="/js/jquery.waypoints.min.js"></script>
+<script src="/js/jquery.stellar.min.js"></script>
+<script src="/js/owl.carousel.min.js"></script>
+<script src="/js/jquery.magnific-popup.min.js"></script>
+<script src="/js/aos.js"></script>
+<script src="/js/jquery.animateNumber.min.js"></script>
+<script src="/js/bootstrap-datepicker.js"></script>
+<script src="/js/jquery.timepicker.min.js"></script>
+<script src="/js/scrollax.min.js"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
+<script src="/js/google-map.js"></script>
+<script src="/js/main.js"></script>
+<script>
 
 </script>
 </body>

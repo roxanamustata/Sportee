@@ -1,6 +1,7 @@
 package com.sportee.sportee.services;
 
 import com.sportee.sportee.data.DAO.*;
+import com.sportee.sportee.data.DTO.GymClassDTO;
 import com.sportee.sportee.data.DTO.SubscriptionDTO;
 import com.sportee.sportee.repositories.SubscriptionRepository;
 import com.sportee.sportee.repositories.SubscriptionTypeRepository;
@@ -61,6 +62,17 @@ public class SubscriptionService implements ISubscriptionService {
             subscriptionRepository.save(s);
         });
 
+    }
+
+    @Override
+    public List<SubscriptionDTO> searchSubscriptions(String keyword) {
+        if (keyword != null) {
+            List<SubscriptionDTO> subscriptions = new ArrayList<SubscriptionDTO>();
+            Iterable<Subscription> all = subscriptionRepository.search(keyword);
+            all.forEach(g -> subscriptions.add(new SubscriptionDTO(g)));
+            return subscriptions;
+        }
+        return getAllSubscriptions();
     }
 
 }

@@ -18,6 +18,7 @@ public class Subscription {
     @Id
     private int id;
     private Date date;
+
     private boolean valid;
 
     @ManyToOne
@@ -36,4 +37,6 @@ public class Subscription {
         this.subscriptionType = subscriptionType;
         this.user = user;
     }
+
+
 }

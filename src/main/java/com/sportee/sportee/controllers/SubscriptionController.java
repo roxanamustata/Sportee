@@ -3,16 +3,20 @@ package com.sportee.sportee.controllers;
 import com.sportee.sportee.data.DAO.MeasurementType;
 import com.sportee.sportee.data.DAO.SubscriptionType;
 import com.sportee.sportee.data.DAO.User;
+import com.sportee.sportee.data.DTO.GymClassDTO;
+import com.sportee.sportee.data.DTO.SubscriptionDTO;
 import com.sportee.sportee.services.SubscriptionService;
 import com.sportee.sportee.services.SubscriptionTypeService;
 import com.sportee.sportee.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.sql.Date;
+import java.util.List;
 import java.util.Optional;
 @PreAuthorize("hasRole('ROLE_admin')")
 @Controller
@@ -75,6 +79,15 @@ public class SubscriptionController {
                                    Optional<Boolean> valid) {
         subscriptionService.editSubscription(id, date, valid);
         return "redirect:/subscriptions";
+    }
+
+    @RequestMapping(value = "/search", method = RequestMethod.GET)
+    public ModelAndView searchSubscriptions(@Param("keyword") String keyword) {
+
+        ModelAndView mv = new ModelAndView("subscriptions");
+        List<SubscriptionDTO> subscriptions = subscriptionService.searchSubscriptions(keyword);
+        mv.addObject("subscriptions", subscriptions);
+        return mv;
     }
 
 }
