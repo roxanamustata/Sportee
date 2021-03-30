@@ -66,6 +66,7 @@ public class SubscriptionService implements ISubscriptionService {
 
     @Override
     public List<SubscriptionDTO> searchSubscriptions(String keyword) {
+
         if (keyword != null) {
             List<SubscriptionDTO> subscriptions = new ArrayList<SubscriptionDTO>();
             Iterable<Subscription> all = subscriptionRepository.search(keyword);
